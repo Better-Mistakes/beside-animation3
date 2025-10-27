@@ -1,9 +1,5 @@
-/* If you want tailwind 'base' styles to override 'webflow' styles, re-order the layers */
-@layer properties, theme, base, webflow, components, utilities;
-
-/* Webflow global styles are imported in the 'webflow' layer */
-@import "../devlink/global.css" layer(webflow);
 @import "tailwindcss";
+
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -53,12 +49,11 @@
   --color-border-secondary: hsla(var(--border-secondary));
   --color-background-elevated: hsla(var(--background-elevated));
   --color-background-grouped: hsla(var(--background-grouped));
-  --color-background-view: hsla(var(--background-view));
   --color-button-secondary: hsla(var(--button-secondary) / 6%);
   --color-button-hover: hsla(var(--button-hover) / 8%);
 
   --color-palette-purple: hsla(var(--palette-purple));
-  --color-palette-teal: hsla(var(--palette-teal));
+  --color-palette-teal: hsla(var(--palette-purple));
 
   --text-body-tiny: 12px;
   --text-body-small: 13px;
@@ -168,7 +163,6 @@
     --border-secondary: 220 10.3% 94.3%;
     --background-elevated: 0 0% 100%;
     --background-grouped: 220 10% 94%;
-    --background-view: 0 0% 100%;
     --button-secondary: 0 0% 0%;
     --button-hover: 0 0% 0%;
 
