@@ -22,9 +22,42 @@ Animated notification card with rolling text, avatar, smooth entrance animations
 
 - `Title`: Main title text
 - `Subtitle`: Subtitle or secondary text
-- `Avatar URL`: URL for the avatar image
-- `Icon URL`: URL for the icon image
+- `Avatar URL`: URL for the avatar image (defaults to Netlify hosted asset)
+- `Icon URL`: URL for the icon image (defaults to Netlify hosted asset)
 - `Show Shake Animation`: Enable shake animation on entrance
+
+### 3. **Notification Carousel** ⭐ **Recommended**
+
+Full animated carousel that automatically cycles through multiple notification cards, just like the original animation! Includes Previous/Next/Stop/Restart controls.
+
+**General Props:**
+
+- `Auto Play`: Start playing automatically (default: true)
+- `Interval (seconds)`: Seconds between cards (default: 5, range: 1-30)
+
+**Card Props (Organized by Card):**
+
+Each of the 4 cards has 5 customizable properties:
+
+**Card 1:**
+
+- `Card 1 - Title`: Main title text
+- `Card 1 - Subtitle`: Subtitle text
+- `Card 1 - Avatar URL`: Avatar image URL
+- `Card 1 - Icon URL`: Icon image URL
+- `Card 1 - Show Shake`: Enable shake animation
+
+**Card 2, Card 3, Card 4:** Same structure as Card 1
+
+**Features:**
+
+- ✅ Auto-cycles through 4 different notification cards
+- ✅ Fully customizable text and images for each card
+- ✅ Previous/Next navigation buttons
+- ✅ Stop/Start playback control
+- ✅ Restart animation button
+- ✅ Smooth entrance and exit animations
+- ✅ Uses Netlify-hosted assets by default (no asset upload needed!)
 
 ## How to Share to Webflow
 
@@ -81,20 +114,25 @@ After making changes to your components:
 ```
 beside-animation3/
 ├── components/
-│   ├── rolling-text.tsx                 # React component
-│   ├── rolling-text.webflow.tsx         # Webflow definition
-│   ├── notification-card.tsx            # React component
-│   └── notification-card.webflow.tsx    # Webflow definition
-├── webflow.json                         # Library configuration
-└── dist/                                # Generated bundle (after build)
+│   ├── rolling-text.tsx                     # React component
+│   ├── rolling-text.webflow.tsx             # Webflow definition
+│   ├── notification-card.tsx                # React component
+│   ├── notification-card.webflow.tsx        # Webflow definition
+│   ├── notification-carousel.tsx            # Carousel component
+│   └── notification-carousel.webflow.tsx    # Carousel Webflow definition
+├── og-animation/
+│   └── page.tsx                             # Original animation backup
+├── webflow.json                             # Library configuration
+└── dist/                                    # Generated bundle (after build)
 ```
 
 ## Tips
 
-- **Assets**: Upload your avatar/icon images to Webflow Assets first, then use those URLs in the component props
-- **Styling**: The components use inline Tailwind classes and will work out-of-the-box
+- **Assets**: Default assets are hosted on Netlify and work out-of-the-box! If you want custom images, upload them to Webflow Assets and update the component props with your URLs
+- **Styling**: The components use Tailwind CSS and will work out-of-the-box with proper styling
 - **Animation Library**: Uses Framer Motion for smooth animations
 - **Shadow DOM**: Components render in isolated Shadow DOM (prevents style conflicts)
+- **Original Animation**: The original Next.js animation is backed up in `og-animation/page.tsx`
 
 ## Troubleshooting
 
@@ -115,8 +153,9 @@ npx webflow library bundle --public-path http://localhost:4000/
 
 **Assets not loading?**
 
-- Upload images to Webflow Assets
-- Use the Webflow-hosted URLs in component props
+- Default assets are hosted on Netlify (https://besideanimation-code.netlify.app)
+- For custom assets, upload images to Webflow Assets and update the component props
+- Make sure your Webflow site can access external URLs
 
 ## Next Steps
 

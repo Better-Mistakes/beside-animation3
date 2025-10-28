@@ -1,6 +1,7 @@
 import { declareComponent } from "@webflow/react";
 import { props } from "@webflow/data-types";
 import { RollingText } from "./rolling-text";
+import "../app/globals.css";
 
 export default declareComponent(RollingText, {
   name: "Rolling Text",

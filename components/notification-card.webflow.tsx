@@ -1,6 +1,7 @@
 import { declareComponent } from "@webflow/react";
 import { props } from "@webflow/data-types";
 import { NotificationCard } from "./notification-card";
+import "../app/globals.css";
 
 export default declareComponent(NotificationCard, {
   name: "Notification Card",
@@ -18,11 +19,13 @@ export default declareComponent(NotificationCard, {
     }),
     avatarUrl: props.Text({
       name: "Avatar URL",
-      defaultValue: "/assets/img/avatar.png",
+      defaultValue:
+        "https://besideanimation-code.netlify.app/assets/img/avatar.png",
     }),
     iconUrl: props.Text({
       name: "Icon URL",
-      defaultValue: "/assets/icons/call.incoming.svg",
+      defaultValue:
+        "https://besideanimation-code.netlify.app/assets/icons/call.incoming.svg",
     }),
     showShakeAnimation: props.Boolean({
       name: "Show Shake Animation",
