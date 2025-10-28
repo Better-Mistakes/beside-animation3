@@ -28,7 +28,7 @@ Animated notification card with rolling text, avatar, smooth entrance animations
 
 ### 3. **Notification Carousel** ⭐ **Recommended**
 
-Full animated carousel that automatically cycles through multiple notification cards, just like the original animation! Includes Previous/Next/Stop/Restart controls.
+Full animated carousel that automatically cycles through multiple notification cards, just like the original animation!
 
 **General Props:**
 
@@ -53,10 +53,8 @@ Each of the 4 cards has 5 customizable properties:
 
 - ✅ Auto-cycles through 4 different notification cards
 - ✅ Fully customizable text and images for each card
-- ✅ Previous/Next navigation buttons
-- ✅ Stop/Start playback control
-- ✅ Restart animation button
 - ✅ Smooth entrance and exit animations
+- ✅ Compact design (no extra padding or controls)
 - ✅ Uses Netlify-hosted assets by default (no asset upload needed!)
 
 ## How to Share to Webflow
