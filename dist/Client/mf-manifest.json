@@ -1,0 +1,146 @@
+{
+  "id": "_BesideAnimationComponents",
+  "name": "_BesideAnimationComponents",
+  "metaData": {
+    "name": "_BesideAnimationComponents",
+    "type": "app",
+    "buildInfo": {
+      "buildVersion": "0.1.0",
+      "buildName": "beside-mktg"
+    },
+    "remoteEntry": {
+      "name": "remoteEntry.js",
+      "path": "",
+      "type": "global"
+    },
+    "types": {
+      "path": "",
+      "name": "",
+      "zip": "",
+      "api": ""
+    },
+    "globalName": "_BesideAnimationComponents",
+    "pluginVersion": "0.20.0",
+    "prefetchInterface": false,
+    "publicPath": "http://localhost:4000/"
+  },
+  "shared": [
+    {
+      "id": "_BesideAnimationComponents:@emotion/is-prop-valid",
+      "name": "@emotion/is-prop-valid",
+      "version": "1.4.0",
+      "singleton": true,
+      "requiredVersion": "^1.4.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "282.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "_BesideAnimationComponents:react-dom",
+      "name": "react-dom",
+      "version": "19.1.0",
+      "singleton": true,
+      "requiredVersion": "^19.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "342.js",
+            "961.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    },
+    {
+      "id": "_BesideAnimationComponents:react",
+      "name": "react",
+      "version": "19.1.0",
+      "singleton": true,
+      "requiredVersion": "^19.1.0",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "540.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      }
+    }
+  ],
+  "remotes": [],
+  "exposes": [
+    {
+      "id": "_BesideAnimationComponents:@webflow_renderer",
+      "name": "@webflow_renderer",
+      "assets": {
+        "js": {
+          "sync": [
+            "558.js",
+            "__federation_expose_scope_webflow_renderer.js"
+          ],
+          "async": []
+        },
+        "css": {
+          "sync": [],
+          "async": []
+        }
+      },
+      "path": "./@webflow_renderer"
+    },
+    {
+      "id": "_BesideAnimationComponents:notification-card",
+      "name": "notification-card",
+      "assets": {
+        "js": {
+          "sync": [
+            "558.js",
+            "126.js",
+            "__federation_expose_notification_card.js"
+          ],
+          "async": []
+        },
+        "css": {
+          "sync": [],
+          "async": []
+        }
+      },
+      "path": "./notification-card"
+    },
+    {
+      "id": "_BesideAnimationComponents:rolling-text",
+      "name": "rolling-text",
+      "assets": {
+        "js": {
+          "sync": [
+            "558.js",
+            "126.js",
+            "__federation_expose_rolling_text.js"
+          ],
+          "async": []
+        },
+        "css": {
+          "sync": [],
+          "async": []
+        }
+      },
+      "path": "./rolling-text"
+    }
+  ]
+}

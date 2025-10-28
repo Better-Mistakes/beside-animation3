@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/tarikjamil/Dropbox/Work/Github/beside-animation3/app/layout\":[\"static/media/07527e0855221fc7-s.p.woff\",\"static/media/c331673f3a63806e-s.p.woff\",\"static/media/8089c34a1296aefd-s.p.woff\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
