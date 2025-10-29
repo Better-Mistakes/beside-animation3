@@ -1,6 +1,15 @@
 {
   "library": {
     "name": "Beside Animation Components",
-    "components": ["./components/**/*.webflow.@(js|jsx|mjs|ts|tsx)"]
+    "components": [
+      "./components/**/*.webflow.@(js|jsx|mjs|ts|tsx)"
+    ]
+  },
+  "telemetry": {
+    "global": {
+      "allowTelemetry": false,
+      "lastPrompted": 1761745284062,
+      "version": "1.8.48"
+    }
   }
 }
