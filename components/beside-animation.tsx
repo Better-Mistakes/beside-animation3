@@ -36,9 +36,9 @@ export function BesideAnimation() {
       id: "incoming-call",
       title: "Incoming call",
       subtitle: "(424) 456-2424",
-      avatar: "/assets/img/avatar.png",
+      avatar: "https://besideanimation-code.netlify.app/assets/img/avatar.png",
       roundedAvatar: false,
-      icon: "/assets/icons/call.incoming.svg",
+      icon: "https://besideanimation-code.netlify.app/assets/icons/call.incoming.svg",
       hasContent: false,
     },
     {
@@ -46,18 +46,18 @@ export function BesideAnimation() {
       title: "Beside is answering the phone",
       subtitle:
         "Hey! This is Bobby's AI Receptionist, how can I help you today?",
-      avatar: "/assets/img/ai.svg",
+      avatar: "https://besideanimation-code.netlify.app/assets/img/ai.svg",
       roundedAvatar: false,
-      icon: "/assets/icons/waveform.svg",
+      icon: "https://besideanimation-code.netlify.app/assets/icons/waveform.svg",
       hasContent: false,
     },
     {
       id: "new-lead",
       title: "New Lead: Sarah Nguyen",
       subtitle: "Kitchen remodel, tomorrow estimate",
-      avatar: "/assets/img/ai.svg",
+      avatar: "https://besideanimation-code.netlify.app/assets/img/ai.svg",
       roundedAvatar: false,
-      icon: "/assets/icons/waveform.svg",
+      icon: "https://besideanimation-code.netlify.app/assets/icons/waveform.svg",
       hasContent: true,
       content: (
         <div className="flex flex-col gap-4 justify-between bg-background-view/5 shadow-card-large rounded-[1.5625rem] p-5 relative overflow-clip min-h-20 animate-[fade-in-up_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
@@ -74,27 +74,28 @@ export function BesideAnimation() {
       id: "follow-up-text",
       title: "Follow-up text message to Sarah",
       subtitle: "Delivered by Beside",
-      avatar: "/assets/img/ai.svg",
+      avatar: "https://besideanimation-code.netlify.app/assets/img/ai.svg",
       roundedAvatar: false,
-      icon: "/assets/icons/chat.svg",
+      icon: "https://besideanimation-code.netlify.app/assets/icons/chat.svg",
       hasContent: false,
     },
     {
       id: "team-joined",
       title: "Your team joined your inbox",
       subtitle: "Bobby, Maxime, Helene, +3",
-      avatar: "/assets/img/logo.svg",
+      avatar: "https://besideanimation-code.netlify.app/assets/img/logo.svg",
       roundedAvatar: true,
-      icon: "/assets/icons/call.incoming.svg",
+      icon: "https://besideanimation-code.netlify.app/assets/icons/call.incoming.svg",
       hasContent: false,
     },
     {
       id: "meeting-prep",
       title: "1:1 Maxime x Matthias",
       subtitle: "Joining in 5 mins",
-      avatar: "/assets/img/google-meet.svg",
+      avatar:
+        "https://besideanimation-code.netlify.app/assets/img/google-meet.svg",
       roundedAvatar: true,
-      icon: "/assets/icons/cursor.click.svg",
+      icon: "https://besideanimation-code.netlify.app/assets/icons/cursor.click.svg",
       hasContent: true,
       content: (
         <div className="flex flex-col gap-4 justify-between bg-background-view/5 shadow-card-large rounded-[1.5625rem] p-5 relative overflow-clip animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
@@ -210,18 +211,20 @@ export function BesideAnimation() {
       id: "writing-notes",
       title: "You're in 1:1 Maxime x Matthias",
       subtitle: "Writing notes for you",
-      avatar: "/assets/img/google-meet.svg",
+      avatar:
+        "https://besideanimation-code.netlify.app/assets/img/google-meet.svg",
       roundedAvatar: true,
-      icon: "/assets/icons/pencil.sparkle.svg",
+      icon: "https://besideanimation-code.netlify.app/assets/icons/pencil.sparkle.svg",
       hasContent: false,
     },
     {
       id: "meeting-notes-ready",
       title: "You're in 1:1 Maxime x Matthias",
       subtitle: "Your meeting notes are ready",
-      avatar: "/assets/img/google-meet.svg",
+      avatar:
+        "https://besideanimation-code.netlify.app/assets/img/google-meet.svg",
       roundedAvatar: true,
-      icon: "/assets/icons/pencil.sparkle.svg",
+      icon: "https://besideanimation-code.netlify.app/assets/icons/pencil.sparkle.svg",
       hasContent: true,
       content: (
         <div className="flex flex-col gap-4 justify-between bg-background-view/5 shadow-card-large rounded-[1.5625rem] p-5 relative overflow-clip min-h-36 animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
@@ -242,7 +245,7 @@ export function BesideAnimation() {
               <div className="flex items-center justify-start gap-2">
                 <img
                   className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.3s_forwards] opacity-0"
-                  src="/assets/img/avatar2.png"
+                  src="https://besideanimation-code.netlify.app/assets/img/avatar2.png"
                 />
 
                 <RollingText
@@ -255,7 +258,7 @@ export function BesideAnimation() {
               <div className="flex items-center justify-start gap-2">
                 <img
                   className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.5s_forwards] opacity-0"
-                  src="/assets/img/avatar4.png"
+                  src="https://besideanimation-code.netlify.app/assets/img/avatar4.png"
                 />
                 <RollingText
                   text="Matthias"
@@ -288,9 +291,9 @@ export function BesideAnimation() {
       id: "ask-beside",
       title: "Ask Beside anything",
       subtitle: "Search through calls, texts, meetings",
-      avatar: "/assets/img/ask.svg",
+      avatar: "https://besideanimation-code.netlify.app/assets/img/ask.svg",
       roundedAvatar: false,
-      icon: "/assets/icons/pencil.sparkle.svg",
+      icon: "https://besideanimation-code.netlify.app/assets/icons/pencil.sparkle.svg",
       hasContent: true,
       content: (
         <div className="flex flex-col gap-4 justify-between bg-background-elevated/[0.08] rounded-full pl-6 pr-3 py-3 relative overflow-clip animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
@@ -311,7 +314,7 @@ export function BesideAnimation() {
             />
 
             <img
-              src="/assets/icons/circle.arrow.up.svg"
+              src="https://besideanimation-code.netlify.app/assets/icons/circle.arrow.up.svg"
               className="size-8 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.3s_forwards] opacity-0"
             />
           </div>
@@ -341,7 +344,7 @@ export function BesideAnimation() {
   }, [currentCardIndex, nextCard, isPlaying]);
 
   return (
-    <div className="font-sans flex flex-col items-center justify-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+    <div className="font-sans flex flex-col items-center justify-center">
       <div
         className={cn(
           "w-full max-w-[28rem] bg-background-elevated/10 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-5 shadow-base rounded-[2.75rem] relative overflow-clip",
@@ -403,7 +406,7 @@ export function BesideAnimation() {
                   className="size-5.5 absolute bottom-0 right-0 bg-background-elevated rounded-lg p-1 shadow-[0_0_12px_0_rgba(0,0,0,0.08)] animate-[fade-in-blur-xs_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
                 >
                   <img
-                    src="/assets/img/logo.svg"
+                    src="https://besideanimation-code.netlify.app/assets/img/logo.svg"
                     className="size-full aspect-square"
                   />
                 </span>
@@ -427,7 +430,7 @@ export function BesideAnimation() {
               >
                 {currentCard.id === "new-lead" && (
                   <img
-                    src="/assets/img/hubspot.png"
+                    src="https://besideanimation-code.netlify.app/assets/img/hubspot.png"
                     className="size-4 flex-shrink-0 inline-block mr-1"
                     alt="HubSpot"
                   />
@@ -445,19 +448,19 @@ export function BesideAnimation() {
                 <div className="*:data-[slot=avatar]:ring-border flex -space-x-2 items-center *:data-[slot=avatar]:ring-3 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
                   <img
                     data-slot="avatar"
-                    src="/assets/img/avatar.png"
+                    src="https://besideanimation-code.netlify.app/assets/img/avatar.png"
                     className="z-[3] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0s_forwards] opacity-0"
                   />
 
                   <img
                     data-slot="avatar"
-                    src="/assets/img/avatar2.png"
+                    src="https://besideanimation-code.netlify.app/assets/img/avatar2.png"
                     className="z-[2] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
                   />
 
                   <img
                     data-slot="avatar"
-                    src="/assets/img/avatar3.png"
+                    src="https://besideanimation-code.netlify.app/assets/img/avatar3.png"
                     className="z-[1] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
                   />
 

@@ -51,6 +51,14 @@ You'll see:
 
 ## 📦 What's Being Uploaded:
 
+### **Beside Animation** - Full 8-Card Sequence ⭐
+
+- Complete animation exactly as seen on localhost:3001
+- All 8 cards with smooth transitions
+- All assets load from Netlify (no missing images!)
+- Dark theme colors
+- Uses `rem` units for responsive scaling
+
 ### **Rolling Text Component**
 
 - Animated character-by-character text
@@ -66,8 +74,11 @@ You'll see:
 3. **Find "Beside Animation Components"**
 4. **Click Install**
 5. **Press "⇧C"** to access components
-6. **Drag "Rolling Text" onto your page**
-7. **Customize in Properties panel**
+6. **Find your components:**
+   - **"Beside Animation"** - Full 8-card sequence
+   - **"Rolling Text"** - Individual text animation component
+7. **Drag onto your page**
+8. **Customize in Properties panel** (Rolling Text only - Beside Animation has no props)
 
 ---
 
@@ -89,6 +100,7 @@ The components will automatically update in Webflow!
 - 🌑 **Dark theme** - Matches your design
 - ⚡ **Smooth animations** - 60fps performance
 - 🎭 **All 8 cards** - Complete animation sequence
+- 🖼️ **Netlify assets** - All images/icons load from besideanimation-code.netlify.app
 - 📱 **Responsive** - Works on all screen sizes
 
 ---
