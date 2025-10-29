@@ -1,8 +1,8 @@
 {
-  "id": "_BesideAnimation",
-  "name": "_BesideAnimation",
+  "id": "_BesideAnimationComponents",
+  "name": "_BesideAnimationComponents",
   "metaData": {
-    "name": "_BesideAnimation",
+    "name": "_BesideAnimationComponents",
     "type": "app",
     "buildInfo": {
       "buildVersion": "0.1.0",
@@ -19,14 +19,14 @@
       "zip": "",
       "api": ""
     },
-    "globalName": "_BesideAnimation",
+    "globalName": "_BesideAnimationComponents",
     "pluginVersion": "0.20.0",
     "prefetchInterface": false,
     "publicPath": "http://localhost:4000/"
   },
   "shared": [
     {
-      "id": "_BesideAnimation:@emotion/is-prop-valid",
+      "id": "_BesideAnimationComponents:@emotion/is-prop-valid",
       "name": "@emotion/is-prop-valid",
       "version": "1.4.0",
       "singleton": true,
@@ -45,7 +45,7 @@
       }
     },
     {
-      "id": "_BesideAnimation:react-dom",
+      "id": "_BesideAnimationComponents:react-dom",
       "name": "react-dom",
       "version": "19.1.0",
       "singleton": true,
@@ -65,7 +65,7 @@
       }
     },
     {
-      "id": "_BesideAnimation:react",
+      "id": "_BesideAnimationComponents:react",
       "name": "react",
       "version": "19.1.0",
       "singleton": true,
@@ -87,7 +87,7 @@
   "remotes": [],
   "exposes": [
     {
-      "id": "_BesideAnimation:@webflow_renderer",
+      "id": "_BesideAnimationComponents:@webflow_renderer",
       "name": "@webflow_renderer",
       "assets": {
         "js": {
@@ -105,49 +105,7 @@
       "path": "./@webflow_renderer"
     },
     {
-      "id": "_BesideAnimation:notification-card",
-      "name": "notification-card",
-      "assets": {
-        "js": {
-          "sync": [
-            "558.js",
-            "126.js",
-            "__federation_expose_notification_card.js"
-          ],
-          "async": []
-        },
-        "css": {
-          "sync": [
-            "919105f8f8036af91818.css"
-          ],
-          "async": []
-        }
-      },
-      "path": "./notification-card"
-    },
-    {
-      "id": "_BesideAnimation:notification-carousel",
-      "name": "notification-carousel",
-      "assets": {
-        "js": {
-          "sync": [
-            "558.js",
-            "126.js",
-            "__federation_expose_notification_carousel.js"
-          ],
-          "async": []
-        },
-        "css": {
-          "sync": [
-            "919105f8f8036af91818.css"
-          ],
-          "async": []
-        }
-      },
-      "path": "./notification-carousel"
-    },
-    {
-      "id": "_BesideAnimation:rolling-text",
+      "id": "_BesideAnimationComponents:rolling-text",
       "name": "rolling-text",
       "assets": {
         "js": {
@@ -160,7 +118,7 @@
         },
         "css": {
           "sync": [
-            "919105f8f8036af91818.css"
+            "0f57819b0c0c3c28fe03.css"
           ],
           "async": []
         }

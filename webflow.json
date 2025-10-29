@@ -1,17 +1,6 @@
 {
   "library": {
-    "name": "beside-animation",
-    "components": [
-      "./components/**/*.webflow.@(js|jsx|mjs|ts|tsx)"
-    ],
-    "description": "beside hero animation",
-    "id": "beside-animation"
-  },
-  "telemetry": {
-    "global": {
-      "allowTelemetry": false,
-      "lastPrompted": 1761653774109,
-      "version": "1.8.47"
-    }
+    "name": "Beside Animation Components",
+    "components": ["./components/**/*.webflow.@(js|jsx|mjs|ts|tsx)"]
   }
 }

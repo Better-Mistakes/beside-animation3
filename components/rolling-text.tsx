@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { motion } from "motion/react";
 
@@ -6,6 +8,7 @@ interface RollingTextProps {
   isVisible: boolean;
   className?: string;
   delay?: number;
+  style?: React.CSSProperties;
 }
 
 export function RollingText({
@@ -13,6 +16,7 @@ export function RollingText({
   isVisible,
   className,
   delay = 0,
+  style,
 }: RollingTextProps) {
   if (!isVisible) return null;
 
@@ -23,19 +27,19 @@ export function RollingText({
   );
 
   return (
-    <span className={className}>
+    <span className={className} style={style}>
       {text.split("").map((char, index) => {
         return (
           <motion.span
             key={`${textId}-${index}`}
             initial={{
-              filter: "blur(4px)",
+              filter: "blur(0.25rem)",
               opacity: 0,
-              y: 18,
+              y: "1.125rem",
               rotateX: 270,
             }}
             animate={{
-              filter: "blur(0px)",
+              filter: "blur(0)",
               opacity: 1,
               y: 0,
               rotateX: 0,

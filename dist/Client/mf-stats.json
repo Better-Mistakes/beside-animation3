@@ -1,8 +1,8 @@
 {
-  "id": "_BesideAnimation",
-  "name": "_BesideAnimation",
+  "id": "_BesideAnimationComponents",
+  "name": "_BesideAnimationComponents",
   "metaData": {
-    "name": "_BesideAnimation",
+    "name": "_BesideAnimationComponents",
     "type": "app",
     "buildInfo": {
       "buildVersion": "0.1.0",
@@ -19,7 +19,7 @@
       "zip": "",
       "api": ""
     },
-    "globalName": "_BesideAnimation",
+    "globalName": "_BesideAnimationComponents",
     "pluginVersion": "0.20.0",
     "prefetchInterface": false,
     "publicPath": "http://localhost:4000/"
@@ -32,7 +32,7 @@
       "version": "1.4.0",
       "name": "@emotion/is-prop-valid",
       "eager": false,
-      "id": "_BesideAnimation:@emotion/is-prop-valid",
+      "id": "_BesideAnimationComponents:@emotion/is-prop-valid",
       "assets": {
         "js": {
           "async": [],
@@ -54,7 +54,7 @@
       "version": "19.1.0",
       "name": "react-dom",
       "eager": false,
-      "id": "_BesideAnimation:react-dom",
+      "id": "_BesideAnimationComponents:react-dom",
       "assets": {
         "js": {
           "async": [],
@@ -77,7 +77,7 @@
       "version": "19.1.0",
       "name": "react",
       "eager": false,
-      "id": "_BesideAnimation:react",
+      "id": "_BesideAnimationComponents:react",
       "assets": {
         "js": {
           "async": [],
@@ -97,7 +97,7 @@
   "exposes": [
     {
       "path": "./@webflow_renderer",
-      "id": "_BesideAnimation:@webflow_renderer",
+      "id": "_BesideAnimationComponents:@webflow_renderer",
       "name": "@webflow_renderer",
       "requires": [],
       "file": "tmp_entry/Client.js",
@@ -116,54 +116,8 @@
       }
     },
     {
-      "path": "./notification-card",
-      "id": "_BesideAnimation:notification-card",
-      "name": "notification-card",
-      "requires": [],
-      "file": "components/notification-card.webflow.tsx",
-      "assets": {
-        "js": {
-          "sync": [
-            "558.js",
-            "126.js",
-            "__federation_expose_notification_card.js"
-          ],
-          "async": []
-        },
-        "css": {
-          "sync": [
-            "919105f8f8036af91818.css"
-          ],
-          "async": []
-        }
-      }
-    },
-    {
-      "path": "./notification-carousel",
-      "id": "_BesideAnimation:notification-carousel",
-      "name": "notification-carousel",
-      "requires": [],
-      "file": "components/notification-carousel.webflow.tsx",
-      "assets": {
-        "js": {
-          "sync": [
-            "558.js",
-            "126.js",
-            "__federation_expose_notification_carousel.js"
-          ],
-          "async": []
-        },
-        "css": {
-          "sync": [
-            "919105f8f8036af91818.css"
-          ],
-          "async": []
-        }
-      }
-    },
-    {
       "path": "./rolling-text",
-      "id": "_BesideAnimation:rolling-text",
+      "id": "_BesideAnimationComponents:rolling-text",
       "name": "rolling-text",
       "requires": [],
       "file": "components/rolling-text.webflow.tsx",
@@ -178,7 +132,7 @@
         },
         "css": {
           "sync": [
-            "919105f8f8036af91818.css"
+            "0f57819b0c0c3c28fe03.css"
           ],
           "async": []
         }

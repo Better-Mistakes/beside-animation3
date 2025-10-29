@@ -1,8 +1,5 @@
 "use client";
 import { RollingText } from "@/components/rolling-text";
-
-import { useAnimatedText } from "@/hooks/use-animated-text";
-import { AnimatePresence, motion } from "motion/react";
 import { useState, useCallback, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +14,7 @@ interface CardData {
   content?: React.ReactNode;
 }
 
-export default function Home() {
+export default function HeroCard() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -63,19 +60,14 @@ export default function Home() {
       icon: "/assets/icons/waveform.svg",
       hasContent: true,
       content: (
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col gap-4 justify-between bg-background-view shadow-card-large rounded-[22px] p-4 relative overflow-clip min-h-20"
-        >
+        <div className="flex flex-col gap-4 justify-between bg-background-view/5 shadow-card-large rounded-[1.5625rem] p-5 relative overflow-clip min-h-20 animate-[fade-in-up_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <RollingText
             text={animatedTextNewLead}
             isVisible={true}
+            delay={0.5}
             className="text-text-primary text-body-medium font-medium"
           />
-        </motion.div>
+        </div>
       ),
     },
     {
@@ -105,15 +97,9 @@ export default function Home() {
       icon: "/assets/icons/cursor.click.svg",
       hasContent: true,
       content: (
-        <motion.div
-          initial={{ opacity: 0, y: -24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -24 }}
-          transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col gap-4 justify-between bg-background-view shadow-card-large rounded-[22px] p-4 relative overflow-clip"
-        >
-          <div className="flex items-center justify-between gap-1 text-palette-purple">
-            <span className="size-6 bg-background-elevated rounded-xs p-1 text-palette-purple">
+        <div className="flex flex-col gap-4 justify-between bg-background-view/5 shadow-card-large rounded-[1.5625rem] p-5 relative overflow-clip animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+          <div className="flex items-center justify-between gap-1 text-palette-purple animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+            <span className="size-6 rounded-xs p-1 text-palette-purple">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -152,7 +138,7 @@ export default function Home() {
             <span className="flex-1 flex text-palette-purple text-body-small font-bold">
               5-Minute Prep
             </span>
-            <span className="size-6 bg-background-elevated rounded-xs p-1 text-palette-purple">
+            <span className="size-6 rounded-xs p-1 text-palette-purple">
               <svg
                 width="16"
                 height="16"
@@ -171,7 +157,13 @@ export default function Home() {
               </svg>
             </span>
           </div>
-          <div className="flex flex-col gap-2">
+          <div
+            className="flex flex-col gap-2 animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]"
+            style={{
+              maskImage:
+                "linear-gradient(to top, transparent 0%, hsla(var(--background-view) / 1) 50%)",
+            }}
+          >
             <span className="text-text-primary text-body-large font-bold">
               Matthias Thomas-Lamotte
             </span>
@@ -180,6 +172,7 @@ export default function Home() {
                 <RollingText
                   text={animatedTextPrepItem1}
                   isVisible={true}
+                  delay={0.1}
                   className="text-text-secondary text-body-small font-medium"
                 />
               </li>
@@ -188,27 +181,29 @@ export default function Home() {
                 <RollingText
                   text={animatedTextPrepItem2}
                   isVisible={true}
+                  delay={0.3}
                   className="text-text-secondary text-body-small font-medium"
                 />
               </li>
 
               <li className="flex items-center justify-start gap-2">
                 <RollingText
-                  text="LinkedIn: Matthias Thomas-Lamotte LinkedIn"
+                  text={animatedTextPrepItem3}
                   isVisible={true}
+                  delay={0.5}
                   className="text-text-secondary text-body-small font-medium"
                 />
               </li>
             </ul>
           </div>
           <div
-            className="absolute z-10 bottom-0 right-0 w-full h-2/3 pointer-events-none"
+            className="absolute z-50 bottom-0 right-0 w-full h-2/3 backdrop-blur-lg rounded-b-[1.5625rem]"
             style={{
-              backgroundImage:
-                "linear-gradient(to bottom, transparent, hsl(var(--background-view)))",
+              maskImage:
+                "linear-gradient(to bottom, transparent 50%, hsla(var(--background-view) / 0.6) 100%)",
             }}
           />
-        </motion.div>
+        </div>
       ),
     },
     {
@@ -229,46 +224,24 @@ export default function Home() {
       icon: "/assets/icons/pencil.sparkle.svg",
       hasContent: true,
       content: (
-        <motion.div
-          initial={{ opacity: 0, y: -24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -24 }}
-          transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col gap-4 justify-between bg-background-view shadow-card-large rounded-[22px] p-4 relative overflow-clip min-h-36"
-        >
+        <div className="flex flex-col gap-4 justify-between bg-background-view/5 shadow-card-large rounded-[1.5625rem] p-5 relative overflow-clip min-h-36 animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <div className="flex flex-col gap-2">
             <RollingText
               text="MacOS App Development Workshop"
               isVisible={true}
+              delay={0.3}
               className="text-text-primary text-body-large font-bold"
             />
-            <div className="flex items-center justify-start gap-6">
+            <div
+              className="flex items-center justify-start gap-6"
+              style={{
+                maskImage:
+                  "linear-gradient(to top, transparent 0%, hsla(var(--background-view) / 1) 50%)",
+              }}
+            >
               <div className="flex items-center justify-start gap-2">
-                <motion.img
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                    filter: "blur(5px)",
-                    scale: 0.9,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    filter: "blur(0px)",
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    y: 20,
-                    filter: "blur(5px)",
-                    scale: 0.9,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                    delay: 0.1,
-                    ease: [0.175, 0.885, 0.32, 1.1],
-                  }}
-                  className="size-6"
+                <img
+                  className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.3s_forwards] opacity-0"
                   src="/assets/img/avatar2.png"
                 />
 
@@ -276,42 +249,19 @@ export default function Home() {
                   text="Maxime"
                   isVisible={true}
                   className="text-text-primary text-body-small font-medium"
-                  delay={0.1}
+                  delay={0.3}
                 />
               </div>
               <div className="flex items-center justify-start gap-2">
-                <motion.img
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                    filter: "blur(5px)",
-                    scale: 0.9,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    filter: "blur(0px)",
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    y: 20,
-                    filter: "blur(5px)",
-                    scale: 0.9,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                    delay: 0.2,
-                    ease: [0.175, 0.885, 0.32, 1.1],
-                  }}
-                  className="size-6"
+                <img
+                  className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.5s_forwards] opacity-0"
                   src="/assets/img/avatar4.png"
                 />
                 <RollingText
                   text="Matthias"
                   isVisible={true}
                   className="text-text-primary text-body-small font-medium"
-                  delay={0.2}
+                  delay={0.5}
                 />
               </div>
             </div>
@@ -319,18 +269,19 @@ export default function Home() {
               <RollingText
                 text={animatedTextSummary}
                 isVisible={true}
+                delay={0.7}
                 className="text-text-secondary text-body-small font-medium"
               />
             </p>
           </div>
           <div
-            className="absolute z-10 bottom-0 right-0 w-full h-2/3 pointer-events-none"
+            className="absolute z-50 bottom-0 right-0 w-full h-2/3 backdrop-blur-lg rounded-b-[1.5625rem]"
             style={{
-              backgroundImage:
-                "linear-gradient(to bottom, transparent, hsl(var(--background-view)))",
+              maskImage:
+                "linear-gradient(to bottom, transparent 50%, hsla(var(--background-view) / 0.6) 100%)",
             }}
           />
-        </motion.div>
+        </div>
       ),
     },
     {
@@ -342,21 +293,15 @@ export default function Home() {
       icon: "/assets/icons/pencil.sparkle.svg",
       hasContent: true,
       content: (
-        <motion.div
-          initial={{ opacity: 0, y: -24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -24 }}
-          transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-col gap-4 justify-between bg-primary/[0.08] rounded-full pl-6 pr-3 py-3 relative overflow-clip"
-        >
+        <div className="flex flex-col gap-4 justify-between bg-background-elevated/[0.08] rounded-full pl-6 pr-3 py-3 relative overflow-clip animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <div className="flex items-center justify-center gap-2 relative">
-            <motion.span
-              initial={{ opacity: 0, x: -2, scale: 0.5 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -2, scale: 0.5 }}
-              transition={{ duration: 0.2, ease: "easeOut", delay: 0.8 }}
+            <span
               data-slot="ask-beside-caret"
-              className="h-2/3 rounded-full bg-palette-teal w-1 block animate-pulse absolute top-1/2 -translate-y-1/2 left-0"
+              className="h-2/3 rounded-full bg-palette-teal w-1 block absolute top-1/2 -translate-y-1/2 left-0 opacity-0"
+              style={{
+                animation:
+                  "fade-in-scale 0.2s ease-out 0.8s forwards, pulse 2s cubic-bezier(0.4,0,0.6,1) 1s infinite",
+              }}
             />
 
             <RollingText
@@ -365,25 +310,12 @@ export default function Home() {
               className="text-text-primary/40 text-body-large font-medium w-full"
             />
 
-            <motion.img
-              initial={{
-                opacity: 0,
-                y: 20,
-                filter: "blur(5px)",
-                scale: 0.9,
-              }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-              exit={{ opacity: 0, y: 20, filter: "blur(5px)", scale: 0.9 }}
-              transition={{
-                duration: 0.3,
-                delay: 0.3,
-                ease: [0.175, 0.885, 0.32, 1.1],
-              }}
+            <img
               src="/assets/icons/circle.arrow.up.svg"
-              className="size-8"
+              className="size-8 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.3s_forwards] opacity-0"
             />
           </div>
-        </motion.div>
+        </div>
       ),
     },
   ];
@@ -391,42 +323,12 @@ export default function Home() {
   const currentCard = cards[currentCardIndex];
 
   const nextCard = useCallback(() => {
-    if (currentCardIndex < cards.length - 1) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentCardIndex((prev) => prev + 1);
-        setIsTransitioning(false);
-      }, 500);
-    }
-  }, [currentCardIndex, cards.length]);
-
-  const previousCard = useCallback(() => {
-    if (currentCardIndex > 0) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentCardIndex((prev) => prev - 1);
-        setIsTransitioning(false);
-      }, 500);
-    }
-  }, [currentCardIndex]);
-
-  const stopAnimation = useCallback(() => {
-    setIsPlaying(false);
-    setIsTransitioning(false);
-  }, []);
-
-  const startAnimation = useCallback(() => {
-    setIsPlaying(true);
-  }, []);
-
-  const restartAnimation = useCallback(() => {
     setIsTransitioning(true);
     setTimeout(() => {
-      setCurrentCardIndex(0);
+      setCurrentCardIndex((prev) => (prev < cards.length - 1 ? prev + 1 : 0));
       setIsTransitioning(false);
-      setIsPlaying(true);
     }, 500);
-  }, []);
+  }, [cards.length]);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -440,409 +342,147 @@ export default function Home() {
 
   return (
     <div className="font-sans flex flex-col items-center justify-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <motion.div
-        layout="size"
-        className="w-full max-w-md bg-background-elevated/80 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-5 shadow-base rounded-[44px] relative overflow-clip"
-        initial={{
-          opacity: 0,
-          y: 200,
-          rotate: 5,
-          scale: 0.5,
-        }}
-        animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
-        exit={{
-          opacity: 0,
-          y: 0,
-          rotate: 5,
-          scale: 0.5,
-        }}
-        transition={{
-          duration: 0.3,
-          ease: [0.175, 0.885, 0.32, 1.1],
-        }}
+      <div
+        className={cn(
+          "w-full max-w-[28rem] bg-background-elevated/10 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-5 shadow-base rounded-[2.75rem] relative overflow-clip",
+          "animate-[card-enter_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards]",
+          isTransitioning &&
+            "animate-[card-transition-out_0.1s_ease-spring_forwards]"
+        )}
       >
+        {!isTransitioning && (
+          <div
+            key={`shimmer-${currentCard.id}`}
+            className="absolute inset-0 pointer-events-none -left-full"
+            style={{
+              animation: "shimmer 0.5s ease-out 0.1s forwards",
+            }}
+          >
+            <div
+              className="h-full w-1/2"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.2) 70%, transparent 100%)",
+              }}
+            />
+          </div>
+        )}
+
         <div className="@container/card-header flex gap-4 justify-between items-center relative w-full">
-          <AnimatePresence mode="popLayout">
-            <motion.div
-              key={`header-${currentCard.id}`}
-              className="flex gap-4 justify-between items-center"
-              initial={{ scale: 1 }}
-              animate={{
-                scale: 1,
-                ...(currentCardIndex === 0 && {
-                  x: [0, -4, 4, -4, 4, 0, 0, -2, 2, -2, 2, 0],
-                }),
-              }}
-              exit={{ scale: 1 }}
-              transition={{
-                duration: 0.5,
-                type: "spring",
-                stiffness: 500,
-                damping: 10,
-                ...(currentCardIndex === 0 && {
-                  x: {
-                    duration: 0.5,
-                    ease: "easeOut",
-                  },
-                }),
-              }}
-            >
-              <div className="relative flex items-center justify-center size-12">
-                <motion.span
-                  key={`avatar-${currentCard.avatar}`}
-                  initial={{
-                    opacity: 0,
-                    filter: "blur(2px)",
-                    scale: 0.8,
-                  }}
-                  animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-                  exit={{ opacity: 0, filter: "blur(2px)", scale: 0.8 }}
-                  transition={{
-                    duration: 0.2,
-                    delay: 0.1,
-                    ease: [0.175, 0.885, 0.32, 1.1],
-                  }}
-                  className={cn(
-                    "relative flex size-8 shrink-0 overflow-hidden rounded-full",
-                    "size-12 shadow-[0_6px_112px_0_rgba(0,0,0,0.06),0_2px_28px_0_rgba(0,0,0,0.02),0_2px_8px_0_rgba(0,0,0,0.04)] p-0",
-                    currentCard.roundedAvatar && "rounded-lg p-2"
-                  )}
+          <div
+            key={`header-${currentCard.id}`}
+            className={cn(
+              "flex gap-4 justify-between items-center",
+              currentCardIndex === 0 && "animate-[shake_0.5s_ease-out_forwards]"
+            )}
+          >
+            <div className="relative flex items-center justify-center size-12">
+              <span
+                key={`avatar-${currentCard.avatar}`}
+                className={cn(
+                  "relative flex size-8 shrink-0 overflow-hidden rounded-full",
+                  "size-12 shadow-[0_6px_112px_0_rgba(0,0,0,0.06),0_2px_28px_0_rgba(0,0,0,0.02),0_2px_8px_0_rgba(0,0,0,0.04)] p-0",
+                  "animate-[fade-in-blur-sm_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0",
+                  currentCard.roundedAvatar &&
+                    "rounded-2xl p-2 bg-background-elevated"
+                )}
+              >
+                <img
+                  alt={currentCard.title}
+                  src={currentCard.avatar}
+                  className="size-full aspect-square animate-[fade-in-blur-xs_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
+                />
+              </span>
+
+              {(currentCard.id === "incoming-call" ||
+                currentCard.id === "meeting-prep" ||
+                currentCard.id === "writing-notes" ||
+                currentCard.id === "meeting-notes-ready") && (
+                <span
+                  key={`logo-beside-${currentCard.avatar}`}
+                  className="size-5.5 absolute bottom-0 right-0 bg-background-elevated rounded-lg p-1 shadow-[0_0_12px_0_rgba(0,0,0,0.08)] animate-[fade-in-blur-xs_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
                 >
-                  <motion.img
-                    initial={{
-                      opacity: 0,
-                      filter: "blur(2px)",
-                      scale: 0.8,
-                    }}
-                    animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-                    exit={{ opacity: 0, filter: "blur(2px)", scale: 0.8 }}
-                    transition={{
-                      duration: 0.2,
-                      ease: [0.175, 0.885, 0.32, 1.1],
-                    }}
-                    alt={currentCard.title}
-                    src={currentCard.avatar}
+                  <img
+                    src="/assets/img/logo.svg"
                     className="size-full aspect-square"
                   />
-                </motion.span>
+                </span>
+              )}
+            </div>
 
-                {(currentCard.id === "incoming-call" ||
-                  currentCard.id === "meeting-prep" ||
-                  currentCard.id === "writing-notes" ||
-                  currentCard.id === "meeting-notes-ready") && (
-                  <motion.span
-                    key={`logo-beside-${currentCard.avatar}`}
-                    initial={{
-                      opacity: 0,
-                      filter: "blur(2px)",
-                      scale: 0.8,
-                    }}
-                    animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-                    exit={{ opacity: 0, filter: "blur(2px)", scale: 0.8 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.1,
-                      ease: [0.175, 0.885, 0.32, 1.1],
-                    }}
-                    className="size-5.5 absolute bottom-0 right-0 bg-background-elevated rounded-xs p-1 shadow-[0_0_12px_0_rgba(0,0,0,0.08)]"
-                  >
-                    <img
-                      src="/assets/img/logo.svg"
-                      className="size-full aspect-square"
-                    />
-                  </motion.span>
-                )}
-              </div>
-
-              <div className="flex flex-col gap-0.5 flex-1 h-fit w-86 overflow-hidden">
-                <motion.span
-                  className="text-text-primary text-body-medium font-semibold"
-                  initial={{
-                    opacity: 0,
-                    x: -8,
-                    filter: "blur(5px)",
-                    scale: 0.9,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                    filter: "blur(0px)",
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    x: -8,
-                    filter: "blur(5px)",
-                    scale: 0.9,
-                  }}
-                  transition={{
-                    duration: 0.2,
-                    delay: 0.05,
-                    ease: [0.175, 0.885, 0.32, 1.1],
-                  }}
-                >
-                  <RollingText
-                    text={currentCard.title}
-                    isVisible={true}
-                    delay={0}
-                  />
-                </motion.span>
-                <motion.span
-                  className="text-text-secondary text-body-medium max-w-76 whitespace-nowrap overflow-hidden max-h-12"
-                  initial={{
-                    opacity: 0,
-                    x: -8,
-                    filter: "blur(5px)",
-                    scale: 0.9,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                    filter: "blur(0px)",
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    x: -8,
-                    filter: "blur(5px)",
-                    scale: 0.9,
-                  }}
-                  transition={{
-                    duration: 0.2,
-                    delay: 0.1,
-                    ease: [0.175, 0.885, 0.32, 1.1],
-                  }}
-                >
-                  {currentCard.id === "new-lead" && (
-                    <img
-                      src="/assets/img/hubspot.png"
-                      className="size-4 flex-shrink-0 inline-block mr-1"
-                      alt="HubSpot"
-                    />
-                  )}
-                  <RollingText
-                    text={currentCard.subtitle}
-                    isVisible={true}
-                    delay={0}
-                  />
-                  <div
-                    className="absolute z-10 bottom-0 right-0 w-full h-full pointer-events-none"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(to right, transparent 75%, hsl(var(--background-elevated)) 100%)",
-                    }}
-                  />
-                </motion.span>
-              </div>
-
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 flex h-fit items-center justify-between mr-2 shrink-0">
-                {currentCard.id === "team-joined" ? (
-                  <motion.div
-                    className="*:data-[slot=avatar]:ring-background flex -space-x-2 items-center *:data-[slot=avatar]:ring-2"
-                    initial={{
-                      opacity: 0,
-                      y: 20,
-                      filter: "blur(5px)",
-                      scale: 0.9,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      filter: "blur(0px)",
-                      scale: 1,
-                    }}
-                    exit={{ opacity: 0, y: 20, filter: "blur(5px)" }}
-                    transition={{
-                      duration: 0.3,
-                      ease: [0.175, 0.885, 0.32, 1.1],
-                    }}
-                  >
-                    <motion.img
-                      initial={{
-                        opacity: 0,
-                        y: 20,
-                        filter: "blur(5px)",
-                        scale: 0.9,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        filter: "blur(0px)",
-                        scale: 1,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 0,
-                        ease: [0.175, 0.885, 0.32, 1.1],
-                      }}
-                      src="/assets/img/avatar.png"
-                      className="relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square"
-                    />
-
-                    <motion.img
-                      initial={{
-                        opacity: 0,
-                        y: 20,
-                        filter: "blur(5px)",
-                        scale: 0.9,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        filter: "blur(0px)",
-                        scale: 1,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 0.05,
-                        ease: [0.175, 0.885, 0.32, 1.1],
-                      }}
-                      src="/assets/img/avatar2.png"
-                      className="relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square"
-                    />
-
-                    <motion.img
-                      initial={{
-                        opacity: 0,
-                        y: 20,
-                        filter: "blur(5px)",
-                        scale: 0.9,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        filter: "blur(0px)",
-                        scale: 1,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 0.1,
-                        ease: [0.175, 0.885, 0.32, 1.1],
-                      }}
-                      src="/assets/img/avatar3.png"
-                      className="relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square"
-                    />
-
-                    <motion.span
-                      initial={{
-                        opacity: 0,
-                        y: 20,
-                        filter: "blur(5px)",
-                        scale: 0.9,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                        filter: "blur(0px)",
-                        scale: 1,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 0.15,
-                        ease: [0.175, 0.885, 0.32, 1.1],
-                      }}
-                      className="relative flex size-8 shrink-0 overflow-hidden items-center justify-center rounded-full bg-background-grouped p-1 text-body-tiny font-medium tabular-nums"
-                    >
-                      +3
-                    </motion.span>
-                  </motion.div>
-                ) : (
-                  <motion.img
-                    initial={{
-                      opacity: 0,
-                      filter: "blur(5px)",
-                      scale: 0.5,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      filter: "blur(0px)",
-                      scale: 1,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      filter: "blur(5px)",
-                      scale: 0.5,
-                    }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0,
-                      ease: [0.175, 0.885, 0.32, 1.1],
-                    }}
-                    src={currentCard.icon}
-                    className="relative flex size-8 shrink-0 overflow-hidden rounded-xs p-1 aspect-square"
+            <div className="flex flex-col gap-0.5 flex-1 h-fit w-86 overflow-hidden">
+              <span className="text-text-primary/90 text-body-medium font-semibold animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0">
+                <RollingText
+                  text={currentCard.title}
+                  isVisible={true}
+                  delay={0}
+                />
+              </span>
+              <span
+                className="text-text-primary/50 text-body-medium max-w-76 whitespace-nowrap overflow-hidden max-h-12 animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                style={{
+                  maskImage:
+                    "linear-gradient(to left, transparent 1%, #000000 10%)",
+                }}
+              >
+                {currentCard.id === "new-lead" && (
+                  <img
+                    src="/assets/img/hubspot.png"
+                    className="size-4 flex-shrink-0 inline-block mr-1"
+                    alt="HubSpot"
                   />
                 )}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                <RollingText
+                  text={currentCard.subtitle}
+                  isVisible={true}
+                  delay={0.5}
+                />
+              </span>
+            </div>
+
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 flex h-fit items-center justify-between mr-2 shrink-0">
+              {currentCard.id === "team-joined" ? (
+                <div className="*:data-[slot=avatar]:ring-border flex -space-x-2 items-center *:data-[slot=avatar]:ring-3 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
+                  <img
+                    data-slot="avatar"
+                    src="/assets/img/avatar.png"
+                    className="z-[3] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0s_forwards] opacity-0"
+                  />
+
+                  <img
+                    data-slot="avatar"
+                    src="/assets/img/avatar2.png"
+                    className="z-[2] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
+                  />
+
+                  <img
+                    data-slot="avatar"
+                    src="/assets/img/avatar3.png"
+                    className="z-[1] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                  />
+
+                  <span
+                    data-slot="avatar"
+                    className="z-[0] relative flex size-8 shrink-0 overflow-hidden items-center justify-center rounded-full bg-background-grouped/50 p-1 text-body-tiny font-medium tabular-nums animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.15s_forwards] opacity-0"
+                  >
+                    +3
+                  </span>
+                </div>
+              ) : (
+                <img
+                  src={currentCard.icon}
+                  className="relative flex size-8 shrink-0 overflow-hidden rounded-xs p-1 aspect-square animate-[fade-in-icon_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
+                />
+              )}
+            </div>
+          </div>
         </div>
 
-        <AnimatePresence mode="sync">
-          {currentCard.hasContent && currentCard.content && (
-            <motion.div
-              key={`content-${currentCard.id}`}
-              initial={{
-                opacity: 0,
-                height: 0,
-              }}
-              animate={{
-                opacity: 1,
-                height: "auto",
-              }}
-              exit={{
-                opacity: 0,
-                height: 0,
-              }}
-              transition={{
-                duration: 0.3,
-                delay: 0.1,
-                ease: [0.175, 0.885, 0.32, 1.1],
-              }}
-              className="relative w-full"
-            >
-              <motion.div
-                initial={{ y: -8 }}
-                animate={{ y: 0 }}
-                transition={{
-                  duration: 0.2,
-                  ease: [0.175, 0.885, 0.32, 1.1],
-                }}
-                className="mt-4"
-              >
-                {currentCard.content}
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-
-      <div className="flex gap-2 flex-wrap justify-center">
-        <button
-          className="text-text-primary text-body-medium font-medium bg-background-grouped rounded-full px-4 py-2 hover:bg-background-elevated transition-colors"
-          onClick={previousCard}
-          disabled={currentCardIndex === 0}
-        >
-          Previous
-        </button>
-        <button
-          className="text-text-primary text-body-medium font-medium bg-background-grouped rounded-full px-4 py-2 hover:bg-background-elevated transition-colors"
-          onClick={nextCard}
-          disabled={currentCardIndex === cards.length - 1}
-        >
-          Next
-        </button>
-        <button
-          className="text-text-primary text-body-medium font-medium bg-background-grouped rounded-full px-4 py-2 hover:bg-background-elevated transition-colors"
-          onClick={isPlaying ? stopAnimation : startAnimation}
-        >
-          {isPlaying ? "Stop" : "Start"}
-        </button>
-        <button
-          className="text-text-primary text-body-medium font-medium bg-background-grouped rounded-full px-4 py-2 hover:bg-background-elevated transition-colors"
-          onClick={restartAnimation}
-        >
-          Restart
-        </button>
+        {currentCard.hasContent && currentCard.content && (
+          <div key={`content-${currentCard.id}`} className="relative w-full">
+            <div className="mt-6">{currentCard.content}</div>
+          </div>
+        )}
       </div>
     </div>
   );
