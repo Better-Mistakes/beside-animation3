@@ -26,36 +26,38 @@ Animated notification card with rolling text, avatar, smooth entrance animations
 - `Icon URL`: URL for the icon image (defaults to Netlify hosted asset)
 - `Show Shake Animation`: Enable shake animation on entrance
 
-### 3. **Notification Carousel** ⭐ **Recommended**
+### 3. **Notification Carousel** ⭐ **Recommended - Full Featured**
 
-Full animated carousel that automatically cycles through multiple notification cards, just like the original animation!
+Complete animated showcase of Beside's AI features with 8 different notification cards, exactly matching the localhost animation! This is a production-ready demo component.
 
-**General Props:**
+**Props:**
 
 - `Auto Play`: Start playing automatically (default: true)
 - `Interval (seconds)`: Seconds between cards (default: 5, range: 1-30)
 
-**Card Props (Organized by Card):**
+**The 8 Cards:**
 
-Each of the 4 cards has 5 customizable properties:
-
-**Card 1:**
-
-- `Card 1 - Title`: Main title text
-- `Card 1 - Subtitle`: Subtitle text
-- `Card 1 - Avatar URL`: Avatar image URL
-- `Card 1 - Icon URL`: Icon image URL
-- `Card 1 - Show Shake`: Enable shake animation
-
-**Card 2, Card 3, Card 4:** Same structure as Card 1
+1. 📞 **Incoming call** - with shake animation and Beside badge
+2. 🤖 **Beside is answering** - AI receptionist greeting
+3. 👤 **New Lead: Sarah Nguyen** - with HubSpot integration and expandable content
+4. 💬 **Follow-up text message** - automated follow-up
+5. 👥 **Your team joined** - team avatars group display
+6. ⚡ **Meeting Prep** - 5-minute prep with rich content area
+7. ✍️ **Writing notes** - live meeting notes
+8. 📝 **Meeting notes ready** - summary with participants
 
 **Features:**
 
-- ✅ Auto-cycles through 4 different notification cards
-- ✅ Fully customizable text and images for each card
-- ✅ Smooth entrance and exit animations
-- ✅ Compact design (no extra padding or controls)
-- ✅ Uses Netlify-hosted assets by default (no asset upload needed!)
+- ✅ 8 fully-featured cards with hard-coded content
+- ✅ Expandable content areas (cards 3, 6, 8)
+- ✅ Rounded & square avatar support
+- ✅ Beside logo badge overlays
+- ✅ Team avatar groups
+- ✅ HubSpot integration icon
+- ✅ Rich content: meeting prep, notes, summaries
+- ✅ Smooth entrance/exit animations
+- ✅ All assets hosted on Netlify (no upload needed!)
+- ✅ Production-ready demo component
 
 ## How to Share to Webflow
 
@@ -126,11 +128,12 @@ beside-animation3/
 
 ## Tips
 
-- **Assets**: Default assets are hosted on Netlify and work out-of-the-box! If you want custom images, upload them to Webflow Assets and update the component props with your URLs
+- **Assets**: All assets are hosted on Netlify and work out-of-the-box!
 - **Styling**: The components use Tailwind CSS and will work out-of-the-box with proper styling
 - **Animation Library**: Uses Framer Motion for smooth animations
 - **Shadow DOM**: Components render in isolated Shadow DOM (prevents style conflicts)
 - **Original Animation**: The original Next.js animation is backed up in `og-animation/page.tsx`
+- **Demo Component**: The Notification Carousel is a production-ready demo showcasing all Beside features
 
 ## Troubleshooting
 
