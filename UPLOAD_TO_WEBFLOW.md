@@ -102,6 +102,19 @@ The components will automatically update in Webflow!
 - 🎭 **All 8 cards** - Complete animation sequence
 - 🖼️ **Netlify assets** - All images/icons load from besideanimation-code.netlify.app
 - 📱 **Responsive** - Works on all screen sizes
+- 🔄 **Circle pulse sync** - Emits events to trigger external pulse animations on card changes
+
+---
+
+## 🎯 **Circle Pulse Integration**
+
+The component now emits a `'beside-card-change'` event every time a card changes, allowing you to sync external animations!
+
+📖 **See `PULSE_SYNC_INTEGRATION.md` for detailed setup instructions** including:
+
+- How to add `script.js` to Webflow Custom Code
+- How to configure the pulse animation
+- Testing and customization options
 
 ---
 

@@ -340,6 +340,11 @@ export function BesideAnimation({
     setTimeout(() => {
       setCurrentCardIndex((prev) => (prev < cards.length - 1 ? prev + 1 : 0));
       setIsTransitioning(false);
+
+      // Emit custom event for Webflow script to sync pulse animation
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("beside-card-change"));
+      }
     }, 500);
   }, [cards.length]);
 
