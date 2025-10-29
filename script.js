@@ -154,10 +154,11 @@ function initLoadingAnimation() {
     1.6 // Same time as circles
   );
 
-  // 7. Animate circle pulse - only child(1) on load
-  if (circlePulse.length > 0) {
+  // 7. Animate circle pulse - only .is--1 on load
+  const circlePulse1 = document.querySelector(".circle-pulse.is--1");
+  if (circlePulse1) {
     tl.to(
-      circlePulse[0], // Target only the first pulse
+      circlePulse1,
       {
         opacity: 0,
         y: "-17.5rem",
@@ -173,12 +174,13 @@ function initLoadingAnimation() {
 // --------------------- circle pulse on card change --------------------- //
 
 function initCardChangePulse() {
-  const circlePulse = document.querySelectorAll(".circle-pulse");
+  const circlePulse1 = document.querySelector(".circle-pulse.is--1");
+  const circlePulse2 = document.querySelector(".circle-pulse.is--2");
 
-  if (circlePulse.length < 2) return; // Need at least 2 pulse elements
+  if (!circlePulse1 || !circlePulse2) return; // Need both pulse elements
 
-  // Track which pulse to animate next (starts at 1 because child(1) animated on load)
-  let currentPulseIndex = 1; // 0 = child(1), 1 = child(2)
+  // Track which pulse to animate next (starts with is--2 because is--1 animated on load)
+  let animateIs2Next = true;
 
   // Listen for card change events from React component
   window.addEventListener("beside-card-change", (event) => {
@@ -186,8 +188,8 @@ function initCardChangePulse() {
     const interval = event.detail?.interval || 5;
 
     // Determine which pulse to animate and which to reset
-    const animatingPulse = circlePulse[currentPulseIndex];
-    const resettingPulse = circlePulse[currentPulseIndex === 0 ? 1 : 0];
+    const animatingPulse = animateIs2Next ? circlePulse2 : circlePulse1;
+    const resettingPulse = animateIs2Next ? circlePulse1 : circlePulse2;
 
     // Animate the current pulse (pulse out)
     gsap.to(animatingPulse, {
@@ -213,7 +215,7 @@ function initCardChangePulse() {
     });
 
     // Toggle to the other pulse for next card change
-    currentPulseIndex = currentPulseIndex === 0 ? 1 : 0;
+    animateIs2Next = !animateIs2Next;
   });
 }
 

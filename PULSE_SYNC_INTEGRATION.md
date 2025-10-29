@@ -20,7 +20,7 @@ The **circle pulse animation** now syncs perfectly with the **card changes** in 
 2. **Webflow Script (`script.js`)**:
 
    - Listens for the `'beside-card-change'` event
-   - **Alternates between two pulse elements**: `.circle-pulse:nth-child(1)` and `.circle-pulse:nth-child(2)`
+   - **Alternates between two pulse elements**: `.circle-pulse.is--1` and `.circle-pulse.is--2`
 
    **For the ANIMATING pulse:**
 
@@ -40,8 +40,8 @@ The **circle pulse animation** now syncs perfectly with the **card changes** in 
 ### **On Page Load:**
 
 ```
-Child 1: Animates out (opacity/y/scale over 4s)
-Child 2: Stays ready at starting position (opacity: 1, y: 0, scale: 1)
+.is--1: Animates out (opacity/y/scale over 4s)
+.is--2: Stays ready at starting position (opacity: 1, y: 0, scale: 1)
 ```
 
 ### **Card Change Pattern (5s interval example):**
@@ -49,22 +49,22 @@ Child 2: Stays ready at starting position (opacity: 1, y: 0, scale: 1)
 **Change 1 (t=0s):**
 
 ```
-Child 1: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
-Child 2: Animates out (opacity/y/scale over 4s)
+.is--1: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
+.is--2: Animates out (opacity/y/scale over 4s)
 ```
 
 **Change 2 (t=5s):**
 
 ```
-Child 1: Animates out (opacity/y/scale over 4s)
-Child 2: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
+.is--1: Animates out (opacity/y/scale over 4s)
+.is--2: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
 ```
 
 **Change 3 (t=10s):**
 
 ```
-Child 1: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
-Child 2: Animates out (opacity/y/scale over 4s)
+.is--1: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
+.is--2: Animates out (opacity/y/scale over 4s)
 ```
 
 And continues alternating...
@@ -116,13 +116,13 @@ npx webflow library share
 **IMPORTANT:** You need **TWO** elements with the class `.circle-pulse` on your Webflow page for the alternating effect to work:
 
 ```html
-<div class="circle-pulse"></div>
-<!-- Child 1 -->
-<div class="circle-pulse"></div>
-<!-- Child 2 -->
+<div class="circle-pulse is--1"></div>
+<!-- First pulse -->
+<div class="circle-pulse is--2"></div>
+<!-- Second pulse -->
 ```
 
-The script will automatically alternate between these two elements, creating a seamless continuous pulse effect.
+The script will automatically alternate between `.is--1` and `.is--2`, creating a seamless continuous pulse effect.
 
 ---
 
@@ -159,10 +159,10 @@ The script will automatically alternate between these two elements, creating a s
 1. **Upload the component** to Webflow
 2. **Add the script** to Custom Code
 3. **Add the component** to your page
-4. **Add TWO `.circle-pulse` elements** to your page (required for alternating effect)
+4. **Add TWO pulse elements** to your page with classes `.circle-pulse.is--1` and `.circle-pulse.is--2` (required for alternating effect)
 5. **Publish and test** - you should see:
-   - Child 1 pulses on page load
-   - Pulses alternate between child 2 and child 1 on each card change
+   - `.is--1` pulses on page load
+   - Pulses alternate between `.is--2` and `.is--1` on each card change
    - While one pulse animates out, the other fades back in
    - Seamless continuous effect!
 
@@ -176,5 +176,5 @@ The script will automatically alternate between these two elements, creating a s
 - **Scope**: Global `window` object
 - **SSR Safe**: Checks for `window` before dispatching
 - **GSAP Required**: Script uses GSAP for animations
-- **Minimum Elements**: Requires 2 `.circle-pulse` elements for alternating effect
-- **Alternation**: Starts with child(1) on load, then child(2), then back to child(1), etc.
+- **Minimum Elements**: Requires `.circle-pulse.is--1` and `.circle-pulse.is--2` for alternating effect
+- **Alternation**: Starts with `.is--1` on load, then `.is--2`, then back to `.is--1`, etc.
