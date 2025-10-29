@@ -45,45 +45,51 @@ The **circle pulse animation** now syncs perfectly with the **card changes** in 
 Heading 1: Visible (opacity: 1, blur: 0)
 Headings 2-10: Hidden (opacity: 0, blur: 1rem)
 Card: Not visible yet
+homeHeroContainer: Hidden (opacity: 0, y: 1rem)
+reactComponent: Hidden (opacity: 0, y: 1rem)
+.is--1: Ready (opacity: 1, y: 0, scale: 1)
+.is--2: Ready (opacity: 1, y: 0, scale: 1)
+```
+
+**t=3s (Card Loads - "beside-card-load" event):**
+
+```
+Card 1: Appears + jiggle animation
+"beside-card-load" event emitted ← FIRST EVENT
+homeHeroContainer: Fades in + slides up (0.8s)
+reactComponent: Fades in + slides up (0.8s)
 .is--1: Animates out (opacity/y/scale over 4s)
-.is--2: Ready at starting position (opacity: 1, y: 0, scale: 1)
+Heading 1: Fades out
+Heading 2: Fades in + deblurs
 ```
 
-**t=3s (First Card Appears):**
-
-```
-Card 1: Becomes visible + jiggle animation
-Heading 1: Still visible
-NO event emitted yet (card just appeared, not changed)
-```
-
-**t=8.5s (First Card CHANGE - Card 1 → Card 2):**
+**t=8s (First Card CHANGE - Card 1 → Card 2):**
 
 ```
 Card 2: Appears
-"beside-card-change" event emitted ← FIRST EVENT
-Heading 1: Fades out
-Heading 2: Fades in + deblurs
+"beside-card-change" event emitted
+Heading 2: Fades out
+Heading 3: Fades in + deblurs
 .is--1: Scale/Y snap + opacity fade 0→1
 .is--2: Animates out (opacity/y/scale over 4s)
 ```
 
-**t=13.5s (Card 2 → Card 3):**
+**t=13s (Card 2 → Card 3):**
 
 ```
 Card 3: Appears
-Heading 2: Fades out
-Heading 3: Fades in + deblurs
+Heading 3: Fades out
+Heading 4: Fades in + deblurs
 .is--1: Animates out
 .is--2: Scale/Y snap + opacity fade 0→1
 ```
 
-**t=18.5s (Card 3 → Card 4):**
+**t=18s (Card 3 → Card 4):**
 
 ```
 Card 4: Appears
-Heading 3: Fades out
-Heading 4: Fades in + deblurs
+Heading 4: Fades out
+Heading 5: Fades in + deblurs
 .is--1: Scale/Y snap + opacity fade 0→1
 .is--2: Animates out
 ```
@@ -182,20 +188,31 @@ The script will automatically alternate between `.is--1` and `.is--2`, creating 
 3. **Add the component** to your page
 4. **Add TWO pulse elements** to your page with classes `.circle-pulse.is--1` and `.circle-pulse.is--2` (required for alternating effect)
 5. **Publish and test** - you should see:
-   - `.is--1` pulses on page load
+   - Page loads with Heading 1 visible
+   - After 3 seconds: card appears, homeHeroContainer/reactComponent fade in, Heading 1→2 transition
+   - `.is--1` pulses out when card appears
    - Pulses alternate between `.is--2` and `.is--1` on each card change
    - While one pulse animates out, the other fades back in
+   - Headings cycle through 2-10, then loop back
    - Seamless continuous effect!
 
 ---
 
 ## 💡 Technical Notes
 
-- **Event Name**: `beside-card-change`
+### **Events:**
+
+- **`beside-card-load`**: Emitted when card first appears (after 3s delay)
+  - Triggers: homeHeroContainer, reactComponent, circlePulse1, Heading 1→2
+- **`beside-card-change`**: Emitted on each subsequent card transition
+  - Triggers: pulse alternation, heading cycling (2-10)
+  - Event Data: `{ interval: number }` - seconds between card changes
+
+### **Requirements:**
+
 - **Event Type**: `CustomEvent`
-- **Event Data**: `{ interval: number }` - seconds between card changes
 - **Scope**: Global `window` object
 - **SSR Safe**: Checks for `window` before dispatching
 - **GSAP Required**: Script uses GSAP for animations
 - **Minimum Elements**: Requires `.circle-pulse.is--1` and `.circle-pulse.is--2` for alternating effect
-- **Alternation**: Starts with `.is--1` on load, then `.is--2`, then back to `.is--1`, etc.
+- **Pulse Timing**: `.is--1` animates when card loads, then pulses alternate on each change

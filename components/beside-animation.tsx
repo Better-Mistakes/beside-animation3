@@ -357,6 +357,11 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       setIsVisible(true); // Show the card
       setHasStarted(true);
 
+      // Emit event for initial card load (for Webflow animations)
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("beside-card-load"));
+      }
+
       // After shake animation completes (~0.5s), start interval timer
       setTimeout(() => {
         setIsPlaying(true);

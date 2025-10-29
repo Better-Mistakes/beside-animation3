@@ -71,7 +71,7 @@ function initLoadingAnimation() {
   gsap.set(loadingElements, { opacity: 0 });
   gsap.set(circleWrapper, { opacity: 0, scale: 0.8 });
   if (homeHeroContainer) {
-    gsap.set(homeHeroContainer, { y: "3rem" });
+    gsap.set(homeHeroContainer, { opacity: 0, y: "1rem" }); // Added opacity: 0
   }
   gsap.set(reactComponent, { opacity: 0, y: "1rem" });
   gsap.set(circlePulse, { opacity: 1, y: 0, scale: 1 });
@@ -129,46 +129,38 @@ function initLoadingAnimation() {
     1.6 // Start at 1.6s (0.6s wrapper + 1s delay)
   );
 
-  // 5. Animate home hero container (same time as circles)
-  if (homeHeroContainer) {
-    tl.to(
-      homeHeroContainer,
-      {
+  // Wait for card to load before animating homeHeroContainer, reactComponent, and circlePulse1
+  window.addEventListener("beside-card-load", () => {
+    // 5. Animate home hero container (when card loads)
+    if (homeHeroContainer) {
+      gsap.to(homeHeroContainer, {
+        opacity: 1,
         y: "0rem",
-        duration: 2,
+        duration: 0.8,
         ease: "power4.out",
-      },
-      1.6 // Same time as circles
-    );
-  }
+      });
+    }
 
-  // 6. Animate react component (same time as circles)
-  tl.to(
-    reactComponent,
-    {
+    // 6. Animate react component (when card loads)
+    gsap.to(reactComponent, {
       opacity: 1,
       y: "0rem",
-      duration: 2,
+      duration: 0.8,
       ease: "power4.out",
-    },
-    1.6 // Same time as circles
-  );
+    });
 
-  // 7. Animate circle pulse - only .is--1 on load
-  const circlePulse1 = document.querySelector(".circle-pulse.is--1");
-  if (circlePulse1) {
-    tl.to(
-      circlePulse1,
-      {
+    // 7. Animate circle pulse - only .is--1 when card loads
+    const circlePulse1 = document.querySelector(".circle-pulse.is--1");
+    if (circlePulse1) {
+      gsap.to(circlePulse1, {
         opacity: 0,
         y: "-17.5rem",
         scale: 1.5,
         duration: 4,
         ease: "power4.out",
-      },
-      2.1 // Same time as circles
-    );
-  }
+      });
+    }
+  });
 }
 
 // --------------------- circle pulse on card change --------------------- //
@@ -242,27 +234,42 @@ function initHeadingSync() {
     }
   });
 
-  // Track current visible heading (starts at 0 for page load, then 1 for first card)
+  // Track current visible heading (starts at 0, will go to 1 when card loads)
   let currentHeadingIndex = 0;
-  let isFirstCardChange = true;
 
-  // Listen for card change events from React component
+  // Listen for card LOAD event (when card first appears after 3s)
+  window.addEventListener("beside-card-load", () => {
+    const heading1 = headings[0];
+    const heading2 = headings[1];
+
+    // Fade out heading 1
+    gsap.to(heading1, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+
+    // Fade in heading 2 with blur effect
+    gsap.to(heading2, {
+      opacity: 1,
+      filter: "blur(0rem)",
+      duration: 0.5,
+      ease: "power2.out",
+      delay: 0.2,
+    });
+
+    // Update to heading 2
+    currentHeadingIndex = 1;
+  });
+
+  // Listen for card CHANGE events (subsequent card changes)
   window.addEventListener("beside-card-change", () => {
     const currentHeading = headings[currentHeadingIndex];
 
-    // Calculate next heading index
-    // First card change: go from heading 1 (index 0) to heading 2 (index 1)
-    // Subsequent changes: cycle through headings 2-10 (indices 1-9)
-    let nextHeadingIndex;
-    if (isFirstCardChange) {
-      nextHeadingIndex = 1; // Go to heading 2
-      isFirstCardChange = false;
-    } else {
-      // Cycle through indices 1-9 (headings 2-10)
-      nextHeadingIndex = currentHeadingIndex + 1;
-      if (nextHeadingIndex > 9) {
-        nextHeadingIndex = 1; // Loop back to heading 2 (index 1)
-      }
+    // Calculate next heading index - cycle through headings 2-10 (indices 1-9)
+    let nextHeadingIndex = currentHeadingIndex + 1;
+    if (nextHeadingIndex > 9) {
+      nextHeadingIndex = 1; // Loop back to heading 2 (index 1)
     }
 
     const nextHeading = headings[nextHeadingIndex];
