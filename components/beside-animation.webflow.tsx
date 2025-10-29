@@ -13,5 +13,9 @@ export default declareComponent(BesideAnimation, {
       name: "Interval (seconds)",
       defaultValue: 5,
     }),
+    startDelay: props.Number({
+      name: "Start Delay (seconds)",
+      defaultValue: 0,
+    }),
   },
 });

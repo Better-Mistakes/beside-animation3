@@ -16,12 +16,17 @@ interface CardData {
 
 interface BesideAnimationProps {
   interval?: number; // Interval in seconds
+  startDelay?: number; // Delay before starting animation in seconds
 }
 
-export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
+export function BesideAnimation({
+  interval = 5,
+  startDelay = 0,
+}: BesideAnimationProps) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false); // Start paused
+  const [hasStarted, setHasStarted] = useState(false);
 
   const animatedTextPrepItem1 = "Role: Backend & AI Lead at Beside.";
 
@@ -337,6 +342,19 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
     }, 500);
   }, [cards.length]);
 
+  // Handle start delay
+  useEffect(() => {
+    if (hasStarted) return;
+
+    const startTimer = setTimeout(() => {
+      setIsPlaying(true);
+      setHasStarted(true);
+    }, startDelay * 1000); // Convert seconds to milliseconds
+
+    return () => clearTimeout(startTimer);
+  }, [startDelay, hasStarted]);
+
+  // Handle card transitions
   useEffect(() => {
     if (!isPlaying) return;
 
