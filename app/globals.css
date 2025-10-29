@@ -162,6 +162,7 @@
     --text-secondary: 216 2.3% 42.9%;
     --border-secondary: 220 10.3% 94.3%;
     --background-elevated: 0 0% 100%;
+    --background-view: 0 0% 98%;
     --background-grouped: 220 10% 94%;
     --button-secondary: 0 0% 0%;
     --button-hover: 0 0% 0%;
@@ -209,6 +210,16 @@
     --border: 220 3% 20%;
     --input: 220 3% 20%;
     --ring: 0 0% 100%;
+
+    --text-primary: 0 0% 100%;
+    --text-secondary: 220 3% 65%;
+    --border-secondary: 220 3% 20%;
+    --background-elevated: 240 6% 10%;
+    --background-view: 240 6% 12%;
+    --background-grouped: 220 3% 15%;
+    --button-secondary: 0 0% 100%;
+    --button-hover: 0 0% 100%;
+
     --sidebar-background: 240 9% 6%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 0 0% 100%;
