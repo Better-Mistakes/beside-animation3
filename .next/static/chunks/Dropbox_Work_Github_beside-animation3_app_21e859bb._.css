@@ -818,6 +818,10 @@
     margin-right: calc(var(--spacing) * 2);
   }
 
+  .ml-auto {
+    margin-left: auto;
+  }
+
   .block {
     display: block;
   }

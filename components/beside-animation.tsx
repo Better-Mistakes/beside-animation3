@@ -375,11 +375,11 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
           </div>
         )}
 
-        <div className="@container/card-header flex gap-4 justify-between items-center w-full">
+        <div className="@container/card-header w-full">
           <div
             key={`header-${currentCard.id}`}
             className={cn(
-              "flex gap-4 items-center flex-1",
+              "flex gap-4 justify-between items-center w-full",
               currentCardIndex === 0 && "animate-[shake_0.5s_ease-out_forwards]"
             )}
           >
@@ -417,7 +417,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
               )}
             </div>
 
-            <div className="flex flex-col gap-0.5 flex-1 h-fit w-86 overflow-hidden">
+            <div className="flex flex-col gap-0.5 flex-1 h-fit overflow-hidden">
               <span className="text-text-primary/90 text-body-medium font-semibold animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0">
                 <RollingText
                   text={currentCard.title}
@@ -446,42 +446,42 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                 />
               </span>
             </div>
-          </div>
 
-          <div className="flex items-center shrink-0">
-            {currentCard.id === "team-joined" ? (
-              <div className="*:data-[slot=avatar]:ring-border flex -space-x-2 items-center *:data-[slot=avatar]:ring-3 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
+            <div className="flex items-center shrink-0 ml-auto">
+              {currentCard.id === "team-joined" ? (
+                <div className="*:data-[slot=avatar]:ring-border flex -space-x-2 items-center *:data-[slot=avatar]:ring-3 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
+                  <img
+                    data-slot="avatar"
+                    src="https://besideanimation-code.netlify.app/assets/img/avatar.png"
+                    className="z-[3] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0s_forwards] opacity-0"
+                  />
+
+                  <img
+                    data-slot="avatar"
+                    src="https://besideanimation-code.netlify.app/assets/img/avatar2.png"
+                    className="z-[2] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
+                  />
+
+                  <img
+                    data-slot="avatar"
+                    src="https://besideanimation-code.netlify.app/assets/img/avatar3.png"
+                    className="z-[1] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                  />
+
+                  <span
+                    data-slot="avatar"
+                    className="z-[0] relative flex size-8 shrink-0 overflow-hidden items-center justify-center rounded-full bg-background-grouped/50 p-1 text-body-tiny font-medium tabular-nums animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.15s_forwards] opacity-0"
+                  >
+                    +3
+                  </span>
+                </div>
+              ) : (
                 <img
-                  data-slot="avatar"
-                  src="https://besideanimation-code.netlify.app/assets/img/avatar.png"
-                  className="z-[3] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0s_forwards] opacity-0"
+                  src={currentCard.icon}
+                  className="relative flex size-8 shrink-0 overflow-hidden rounded-xs p-1 aspect-square animate-[fade-in-icon_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
                 />
-
-                <img
-                  data-slot="avatar"
-                  src="https://besideanimation-code.netlify.app/assets/img/avatar2.png"
-                  className="z-[2] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
-                />
-
-                <img
-                  data-slot="avatar"
-                  src="https://besideanimation-code.netlify.app/assets/img/avatar3.png"
-                  className="z-[1] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
-                />
-
-                <span
-                  data-slot="avatar"
-                  className="z-[0] relative flex size-8 shrink-0 overflow-hidden items-center justify-center rounded-full bg-background-grouped/50 p-1 text-body-tiny font-medium tabular-nums animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.15s_forwards] opacity-0"
-                >
-                  +3
-                </span>
-              </div>
-            ) : (
-              <img
-                src={currentCard.icon}
-                className="relative flex size-8 shrink-0 overflow-hidden rounded-xs p-1 aspect-square animate-[fade-in-icon_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
-              />
-            )}
+              )}
+            </div>
           </div>
         </div>
 
