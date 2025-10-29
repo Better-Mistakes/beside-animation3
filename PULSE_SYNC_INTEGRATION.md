@@ -56,10 +56,10 @@ reactComponent: Hidden (opacity: 0, y: 1rem)
 ```
 Card 1: Appears + jiggle animation
 "beside-card-load" event emitted ← FIRST EVENT
-homeHeroContainer: Slides up (0.8s)
-reactComponent: Fades in + slides up (0.8s)
-.is--1: Animates out (opacity/y/scale over 4s)
-Heading 1 → 2: Instant switch (no fade/blur animation)
+homeHeroContainer: Slides up (0.8s) ┐
+reactComponent: Fades in + slides up (0.8s) ├─ ALL HAPPEN SIMULTANEOUSLY
+.is--1: Animates out (opacity/y/scale over 4s) │
+Heading 1 → 2: Fade out + Fade in with deblur (0.8s) ┘
 ```
 
 **t=8s (First Card CHANGE - Card 1 → Card 2):**
@@ -188,9 +188,12 @@ The script will automatically alternate between `.is--1` and `.is--2`, creating 
 4. **Add TWO pulse elements** to your page with classes `.circle-pulse.is--1` and `.circle-pulse.is--2` (required for alternating effect)
 5. **Publish and test** - you should see:
    - Page loads with Heading 1 visible
-   - After 3 seconds: card appears, homeHeroContainer slides up, reactComponent fades in
-   - Heading instantly switches from 1 → 2 (no animation)
-   - `.is--1` pulses out when card appears
+   - After 3 seconds: card appears with **synchronized animations**:
+     - homeHeroContainer slides up
+     - reactComponent fades in + slides up
+     - Heading 1 fades out while Heading 2 fades in + deblurs
+     - `.is--1` pulses out
+     - All happen at the same time (0.8s duration)
    - Pulses alternate between `.is--2` and `.is--1` on each card change
    - While one pulse animates out, the other fades back in
    - Headings cycle through 2-10 with fade/blur transitions, then loop back
@@ -203,7 +206,12 @@ The script will automatically alternate between `.is--1` and `.is--2`, creating 
 ### **Events:**
 
 - **`beside-card-load`**: Emitted when card first appears (after 3s delay)
-  - Triggers: homeHeroContainer (slide up), reactComponent (fade in + slide up), circlePulse1 (animate out), Heading 1→2 (instant switch)
+  - Triggers (all 0.8s, simultaneous):
+    - homeHeroContainer: slide up
+    - reactComponent: fade in + slide up
+    - circlePulse1: animate out (4s)
+    - Heading 1: fade out
+    - Heading 2: fade in + deblur
 - **`beside-card-change`**: Emitted on each subsequent card transition
   - Triggers: pulse alternation, heading cycling (2-10 with fade/blur animations)
   - Event Data: `{ interval: number }` - seconds between card changes

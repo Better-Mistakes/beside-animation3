@@ -284,15 +284,19 @@ function initHeadingSync() {
     const heading1 = headings[0];
     const heading2 = headings[1];
 
-    // Hide heading 1
-    gsap.set(heading1, {
+    // Fade out heading 1 (animated)
+    gsap.to(heading1, {
       opacity: 0,
+      duration: 0.8,
+      ease: "power4.out",
     });
 
-    // Show heading 2 (already deblurred)
-    gsap.set(heading2, {
+    // Fade in heading 2 with deblur (animated, at the same time)
+    gsap.to(heading2, {
       opacity: 1,
       filter: "blur(0rem)",
+      duration: 0.8,
+      ease: "power4.out",
     });
 
     // Update to heading 2
