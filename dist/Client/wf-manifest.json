@@ -1,1 +1,1 @@
-{"type":"FEDERATION","version":2,"entry":"mf-manifest.json","renderer":"@webflow_renderer","components":{"rolling-text":{"css":["http://localhost:4000/0f57819b0c0c3c28fe03.css"]}}}
+{"type":"FEDERATION","version":2,"entry":"mf-manifest.json","renderer":"@webflow_renderer","components":{"beside-animation":{"css":["http://localhost:4000/0f57819b0c0c3c28fe03.css"]},"rolling-text":{"css":["http://localhost:4000/0f57819b0c0c3c28fe03.css"]}}}

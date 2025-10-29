@@ -3,7 +3,9 @@
     "name": "Beside Animation Components",
     "components": [
       "./components/**/*.webflow.@(js|jsx|mjs|ts|tsx)"
-    ]
+    ],
+    "id": "beside-animation",
+    "description": "beside hero animation"
   },
   "telemetry": {
     "global": {

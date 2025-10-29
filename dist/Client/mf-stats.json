@@ -49,6 +49,28 @@
     },
     {
       "singleton": true,
+      "requiredVersion": "^2.1.1",
+      "shareScope": "default",
+      "version": "2.1.1",
+      "name": "clsx",
+      "eager": false,
+      "id": "_BesideAnimationComponents:clsx",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "508.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
+    },
+    {
+      "singleton": true,
       "requiredVersion": "^19.1.0",
       "shareScope": "default",
       "version": "19.1.0",
@@ -91,6 +113,28 @@
         }
       },
       "usedIn": []
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.3.1",
+      "shareScope": "default",
+      "version": "3.3.1",
+      "name": "tailwind-merge",
+      "eager": false,
+      "id": "_BesideAnimationComponents:tailwind-merge",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "752.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": []
     }
   ],
   "remotes": [],
@@ -111,6 +155,29 @@
         },
         "css": {
           "sync": [],
+          "async": []
+        }
+      }
+    },
+    {
+      "path": "./beside-animation",
+      "id": "_BesideAnimationComponents:beside-animation",
+      "name": "beside-animation",
+      "requires": [],
+      "file": "components/beside-animation.webflow.tsx",
+      "assets": {
+        "js": {
+          "sync": [
+            "558.js",
+            "126.js",
+            "__federation_expose_beside_animation.js"
+          ],
+          "async": []
+        },
+        "css": {
+          "sync": [
+            "0f57819b0c0c3c28fe03.css"
+          ],
           "async": []
         }
       }
