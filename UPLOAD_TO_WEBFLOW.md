@@ -8,7 +8,8 @@ Your animation is **ready to upload** with all rem units converted!
 - ✅ Dark theme colors configured
 - ✅ 9-card full-featured animation
 - ✅ Rolling text animations
-- ✅ Configurable timing (interval + startDelay)
+- ✅ Configurable card interval (5s default)
+- ✅ 3-second delay before first card appears (hardcoded)
 - ✅ Event sync for headings and pulse animations
 - ✅ Components bundled successfully
 
@@ -60,7 +61,8 @@ You'll see:
 - All assets load from Netlify (no missing images!)
 - Dark theme colors
 - Uses `rem` units for responsive scaling
-- Configurable: interval (card change speed), startDelay (3s default)
+- 3-second delay before first card appears (hardcoded)
+- Configurable: interval (card change speed, 5s default)
 - Emits events for heading and pulse sync
 
 ### **Rolling Text Component**
@@ -83,7 +85,7 @@ You'll see:
    - **"Rolling Text"** - Individual text animation component
 7. **Drag onto your page**
 8. **Customize in Properties panel:**
-   - **Beside Animation**: interval (seconds), startDelay (seconds)
+   - **Beside Animation**: interval (seconds) - controls card change speed
    - **Rolling Text**: text content, visibility, delay
 
 ---
@@ -108,7 +110,7 @@ The components will automatically update in Webflow!
 - 🎭 **All 9 cards** - Complete animation sequence
 - 🖼️ **Netlify assets** - All images/icons load from besideanimation-code.netlify.app
 - 📱 **Responsive** - Works on all screen sizes
-- ⏱️ **Configurable timing** - Adjust interval (5s default) and start delay (3s default)
+- ⏰ **Smart timing** - 3-second delay before first card, then configurable interval (5s default)
 - 🔄 **Event sync** - Emits `beside-card-change` events for circle pulse and heading synchronization
 - 📝 **Heading sync** - Coordinates with 10 heading elements that transition on each card change
 

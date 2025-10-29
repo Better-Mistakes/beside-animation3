@@ -37,7 +37,7 @@ The **circle pulse animation** now syncs perfectly with the **card changes** in 
 
 ## 🎬 Complete Animation Timeline
 
-### **With Default Settings (startDelay=3s, interval=5s):**
+### **With Default Settings (3s hardcoded delay, interval=5s):**
 
 **t=0s (Page Load):**
 
@@ -164,7 +164,7 @@ The script will automatically alternate between `.is--1` and `.is--2`, creating 
 ### **In Webflow (Properties Panel):**
 
 - **Interval (seconds)**: How long each card displays (default: 5)
-- **Start Delay (seconds)**: Delay before animation starts (default: 0)
+- **Note**: The 3-second initial delay is hardcoded and cannot be changed
 
 ### **In `script.js`:**
 

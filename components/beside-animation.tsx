@@ -16,13 +16,10 @@ interface CardData {
 
 interface BesideAnimationProps {
   interval?: number; // Interval in seconds
-  startDelay?: number; // Delay before starting animation in seconds
 }
 
-export function BesideAnimation({
-  interval = 5,
-  startDelay = 0,
-}: BesideAnimationProps) {
+export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
+  const startDelay = 3; // Hardcoded 3-second delay before first card appears
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false); // Start paused
