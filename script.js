@@ -226,8 +226,71 @@ function initCardChangePulse() {
   });
 }
 
+// --------------------- heading sync on card change --------------------- //
+
+function initHeadingSync() {
+  const headings = document.querySelectorAll(".heading-style-64-hero");
+
+  if (headings.length === 0) return; // No headings to sync
+
+  // Set initial state - only first heading visible, rest hidden and blurred
+  headings.forEach((heading, index) => {
+    if (index === 0) {
+      gsap.set(heading, { opacity: 1, filter: "blur(0rem)" });
+    } else {
+      gsap.set(heading, { opacity: 0, filter: "blur(1rem)" });
+    }
+  });
+
+  // Track current visible heading (starts at 0 for page load, then 1 for first card)
+  let currentHeadingIndex = 0;
+  let isFirstCardChange = true;
+
+  // Listen for card change events from React component
+  window.addEventListener("beside-card-change", () => {
+    const currentHeading = headings[currentHeadingIndex];
+
+    // Calculate next heading index
+    // First card change: go from heading 1 (index 0) to heading 2 (index 1)
+    // Subsequent changes: cycle through headings 2-10 (indices 1-9)
+    let nextHeadingIndex;
+    if (isFirstCardChange) {
+      nextHeadingIndex = 1; // Go to heading 2
+      isFirstCardChange = false;
+    } else {
+      // Cycle through indices 1-9 (headings 2-10)
+      nextHeadingIndex = currentHeadingIndex + 1;
+      if (nextHeadingIndex > 9) {
+        nextHeadingIndex = 1; // Loop back to heading 2 (index 1)
+      }
+    }
+
+    const nextHeading = headings[nextHeadingIndex];
+
+    // Fade out current heading
+    gsap.to(currentHeading, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+
+    // Fade in next heading with blur effect
+    gsap.to(nextHeading, {
+      opacity: 1,
+      filter: "blur(0rem)",
+      duration: 0.5,
+      ease: "power2.out",
+      delay: 0.2, // Slight delay after current fades out
+    });
+
+    // Update current heading index
+    currentHeadingIndex = nextHeadingIndex;
+  });
+}
+
 // Initialize Loading Animation
 document.addEventListener("DOMContentLoaded", () => {
   initLoadingAnimation();
   initCardChangePulse();
+  initHeadingSync();
 });

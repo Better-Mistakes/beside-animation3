@@ -6,7 +6,7 @@ import "../app/globals.css";
 export default declareComponent(BesideAnimation, {
   name: "Beside Animation",
   description:
-    "Complete 8-card animated sequence showcasing Beside's AI features. Emits 'beside-card-change' events for syncing external animations (like circle pulse).",
+    "Complete 9-card animated sequence showcasing Beside's AI features. Emits 'beside-card-change' events for syncing external animations (like circle pulse and headings).",
   group: "Animations",
   props: {
     interval: props.Number({
@@ -15,7 +15,7 @@ export default declareComponent(BesideAnimation, {
     }),
     startDelay: props.Number({
       name: "Start Delay (seconds)",
-      defaultValue: 0,
+      defaultValue: 3,
     }),
   },
 });

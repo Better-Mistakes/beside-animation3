@@ -35,42 +35,60 @@ The **circle pulse animation** now syncs perfectly with the **card changes** in 
 
 ---
 
-## 🎬 Animation Timeline
+## 🎬 Complete Animation Timeline
 
-### **On Page Load:**
+### **With Default Settings (startDelay=3s, interval=5s):**
+
+**t=0s (Page Load):**
 
 ```
+Heading 1: Visible (opacity: 1, blur: 0)
+Headings 2-10: Hidden (opacity: 0, blur: 1rem)
+Card: Not visible yet
 .is--1: Animates out (opacity/y/scale over 4s)
-.is--2: Stays ready at starting position (opacity: 1, y: 0, scale: 1)
+.is--2: Ready at starting position (opacity: 1, y: 0, scale: 1)
 ```
 
-### **Card Change Pattern (5s interval example):**
-
-**Change 1 (t=0s):**
+**t=3s (First Card Appears):**
 
 ```
-SIMULTANEOUSLY for 4 seconds:
-.is--1: Scale/Y snap to initial (INSTANT) | Opacity fades 0→1 (linear, 4s)
-.is--2: Animates out - opacity/y/scale (eased, 4s)
+Card 1: Becomes visible + jiggle animation
+Heading 1: Still visible
+NO event emitted yet (card just appeared, not changed)
 ```
 
-**Change 2 (t=5s):**
+**t=8.5s (First Card CHANGE - Card 1 → Card 2):**
 
 ```
-SIMULTANEOUSLY for 4 seconds:
-.is--1: Animates out - opacity/y/scale (eased, 4s)
-.is--2: Scale/Y snap to initial (INSTANT) | Opacity fades 0→1 (linear, 4s)
+Card 2: Appears
+"beside-card-change" event emitted ← FIRST EVENT
+Heading 1: Fades out
+Heading 2: Fades in + deblurs
+.is--1: Scale/Y snap + opacity fade 0→1
+.is--2: Animates out (opacity/y/scale over 4s)
 ```
 
-**Change 3 (t=10s):**
+**t=13.5s (Card 2 → Card 3):**
 
 ```
-SIMULTANEOUSLY for 4 seconds:
-.is--1: Scale/Y snap to initial (INSTANT) | Opacity fades 0→1 (linear, 4s)
-.is--2: Animates out - opacity/y/scale (eased, 4s)
+Card 3: Appears
+Heading 2: Fades out
+Heading 3: Fades in + deblurs
+.is--1: Animates out
+.is--2: Scale/Y snap + opacity fade 0→1
 ```
 
-And continues alternating...
+**t=18.5s (Card 3 → Card 4):**
+
+```
+Card 4: Appears
+Heading 3: Fades out
+Heading 4: Fades in + deblurs
+.is--1: Scale/Y snap + opacity fade 0→1
+.is--2: Animates out
+```
+
+And continues alternating through all 9 cards + 10 headings...
 
 ---
 
