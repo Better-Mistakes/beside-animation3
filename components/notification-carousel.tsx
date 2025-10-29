@@ -208,10 +208,10 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
             </ul>
           </div>
           <div
-            className="absolute z-10 bottom-0 right-0 w-full h-2/3"
+            className="absolute z-10 bottom-0 right-0 w-full h-2/3 pointer-events-none"
             style={{
               backgroundImage:
-                "linear-gradient(to bottom, transparent, #FFFFFF)",
+                "linear-gradient(to bottom, transparent, hsl(var(--background-view)))",
             }}
           />
         </motion.div>
@@ -333,10 +333,10 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
             </p>
           </div>
           <div
-            className="absolute z-10 bottom-0 right-0 w-full h-2/3"
+            className="absolute z-10 bottom-0 right-0 w-full h-2/3 pointer-events-none"
             style={{
               backgroundImage:
-                "linear-gradient(to bottom, transparent, #FFFFFF)",
+                "linear-gradient(to bottom, transparent, hsl(var(--background-view)))",
             }}
           />
         </motion.div>
@@ -561,10 +561,10 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
                     delay={0}
                   />
                   <div
-                    className="absolute z-10 bottom-0 right-0 w-full h-full"
+                    className="absolute z-10 bottom-0 right-0 w-full h-full pointer-events-none"
                     style={{
                       backgroundImage:
-                        "linear-gradient(to right, transparent 75%, #FFFFFF 100%)",
+                        "linear-gradient(to right, transparent 75%, hsl(var(--background-elevated)) 100%)",
                     }}
                   />
                 </motion.span>
