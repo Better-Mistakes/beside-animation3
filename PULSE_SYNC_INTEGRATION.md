@@ -56,11 +56,10 @@ reactComponent: Hidden (opacity: 0, y: 1rem)
 ```
 Card 1: Appears + jiggle animation
 "beside-card-load" event emitted ← FIRST EVENT
-homeHeroContainer: Fades in + slides up (0.8s)
+homeHeroContainer: Slides up (0.8s)
 reactComponent: Fades in + slides up (0.8s)
 .is--1: Animates out (opacity/y/scale over 4s)
-Heading 1: Fades out
-Heading 2: Fades in + deblurs
+Heading 1 → 2: Instant switch (no fade/blur animation)
 ```
 
 **t=8s (First Card CHANGE - Card 1 → Card 2):**
@@ -189,11 +188,12 @@ The script will automatically alternate between `.is--1` and `.is--2`, creating 
 4. **Add TWO pulse elements** to your page with classes `.circle-pulse.is--1` and `.circle-pulse.is--2` (required for alternating effect)
 5. **Publish and test** - you should see:
    - Page loads with Heading 1 visible
-   - After 3 seconds: card appears, homeHeroContainer/reactComponent fade in, Heading 1→2 transition
+   - After 3 seconds: card appears, homeHeroContainer slides up, reactComponent fades in
+   - Heading instantly switches from 1 → 2 (no animation)
    - `.is--1` pulses out when card appears
    - Pulses alternate between `.is--2` and `.is--1` on each card change
    - While one pulse animates out, the other fades back in
-   - Headings cycle through 2-10, then loop back
+   - Headings cycle through 2-10 with fade/blur transitions, then loop back
    - Seamless continuous effect!
 
 ---
@@ -203,9 +203,9 @@ The script will automatically alternate between `.is--1` and `.is--2`, creating 
 ### **Events:**
 
 - **`beside-card-load`**: Emitted when card first appears (after 3s delay)
-  - Triggers: homeHeroContainer, reactComponent, circlePulse1, Heading 1→2
+  - Triggers: homeHeroContainer (slide up), reactComponent (fade in + slide up), circlePulse1 (animate out), Heading 1→2 (instant switch)
 - **`beside-card-change`**: Emitted on each subsequent card transition
-  - Triggers: pulse alternation, heading cycling (2-10)
+  - Triggers: pulse alternation, heading cycling (2-10 with fade/blur animations)
   - Event Data: `{ interval: number }` - seconds between card changes
 
 ### **Requirements:**

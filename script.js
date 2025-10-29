@@ -62,30 +62,30 @@ function initLoadingAnimation() {
     allWords = allWords.concat(words);
   });
 
-  // Set initial states
+  // Set initial states - IMPORTANT: Set these immediately to prevent flash
   if (mainWrapper) {
-    gsap.set(mainWrapper, { opacity: 0 });
+    gsap.set(mainWrapper, { opacity: 0, visibility: "visible" });
   }
 
   gsap.set(allWords, { opacity: 0, filter: "blur(1rem)" });
   gsap.set(loadingElements, { opacity: 0 });
   gsap.set(circleWrapper, { opacity: 0, scale: 0.8 });
   if (homeHeroContainer) {
-    gsap.set(homeHeroContainer, { opacity: 0, y: "1rem" }); // Added opacity: 0
+    gsap.set(homeHeroContainer, { opacity: 1, y: "1rem" }); // Opacity stays 1, only Y animates
   }
   gsap.set(reactComponent, { opacity: 0, y: "1rem" });
   gsap.set(circlePulse, { opacity: 1, y: 0, scale: 1 });
 
-  // Create timeline
-  const tl = gsap.timeline();
+  // Create timeline with a small delay to ensure initial states are applied
+  const tl = gsap.timeline({ delay: 0.1 });
 
-  // 1. Fade in main wrapper
+  // 1. Fade in main wrapper with longer duration for more visible effect
   if (mainWrapper) {
     tl.to(
       mainWrapper,
       {
         opacity: 1,
-        duration: 0.6,
+        duration: 0.8,
         ease: "power4.out",
       },
       0
@@ -129,12 +129,16 @@ function initLoadingAnimation() {
     1.6 // Start at 1.6s (0.6s wrapper + 1s delay)
   );
 
+  // Track if card-load event has fired
+  let cardLoadEventFired = false;
+
   // Wait for card to load before animating homeHeroContainer, reactComponent, and circlePulse1
   window.addEventListener("beside-card-load", () => {
-    // 5. Animate home hero container (when card loads)
+    cardLoadEventFired = true;
+
+    // 5. Animate home hero container Y position only (opacity already 1)
     if (homeHeroContainer) {
       gsap.to(homeHeroContainer, {
-        opacity: 1,
         y: "0rem",
         duration: 0.8,
         ease: "power4.out",
@@ -161,6 +165,44 @@ function initLoadingAnimation() {
       });
     }
   });
+
+  // FALLBACK: If card-load event doesn't fire within 3 seconds, animate anyway
+  setTimeout(() => {
+    if (!cardLoadEventFired) {
+      console.log(
+        "Card load event timeout - animating home hero container as fallback"
+      );
+
+      // 5. Animate home hero container Y position only (fallback)
+      if (homeHeroContainer) {
+        gsap.to(homeHeroContainer, {
+          y: "0rem",
+          duration: 0.8,
+          ease: "power4.out",
+        });
+      }
+
+      // 6. Animate react component (fallback)
+      gsap.to(reactComponent, {
+        opacity: 1,
+        y: "0rem",
+        duration: 0.8,
+        ease: "power4.out",
+      });
+
+      // 7. Animate circle pulse - only .is--1 (fallback)
+      const circlePulse1 = document.querySelector(".circle-pulse.is--1");
+      if (circlePulse1) {
+        gsap.to(circlePulse1, {
+          opacity: 0,
+          y: "-17.5rem",
+          scale: 1.5,
+          duration: 4,
+          ease: "power4.out",
+        });
+      }
+    }
+  }, 3000); // 3 second timeout
 }
 
 // --------------------- circle pulse on card change --------------------- //
@@ -242,20 +284,15 @@ function initHeadingSync() {
     const heading1 = headings[0];
     const heading2 = headings[1];
 
-    // Fade out heading 1
-    gsap.to(heading1, {
+    // Hide heading 1
+    gsap.set(heading1, {
       opacity: 0,
-      duration: 0.3,
-      ease: "power2.out",
     });
 
-    // Fade in heading 2 with blur effect
-    gsap.to(heading2, {
+    // Show heading 2 (already deblurred)
+    gsap.set(heading2, {
       opacity: 1,
       filter: "blur(0rem)",
-      duration: 0.5,
-      ease: "power2.out",
-      delay: 0.2,
     });
 
     // Update to heading 2
@@ -277,6 +314,7 @@ function initHeadingSync() {
     // Fade out current heading
     gsap.to(currentHeading, {
       opacity: 0,
+      filter: "blur(1rem)",
       duration: 0.3,
       ease: "power2.out",
     });
