@@ -343,10 +343,14 @@ export function BesideAnimation({
 
       // Emit custom event for Webflow script to sync pulse animation
       if (typeof window !== "undefined") {
-        window.dispatchEvent(new CustomEvent("beside-card-change"));
+        window.dispatchEvent(
+          new CustomEvent("beside-card-change", {
+            detail: { interval: interval }, // Pass interval duration for opacity fade
+          })
+        );
       }
     }, 500);
-  }, [cards.length]);
+  }, [cards.length, interval]);
 
   // Handle start delay - show card and trigger jiggle
   useEffect(() => {

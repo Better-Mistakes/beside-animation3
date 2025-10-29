@@ -14,26 +14,60 @@ The **circle pulse animation** now syncs perfectly with the **card changes** in 
 
    - Every time a card changes, it emits a custom event: `'beside-card-change'`
    - This happens after the card transition completes (500ms)
+   - Event includes the interval duration for opacity fade timing
    - Event is dispatched to `window` so it crosses the Shadow DOM boundary
 
 2. **Webflow Script (`script.js`)**:
+
    - Listens for the `'beside-card-change'` event
-   - When triggered, plays the pulse animation:
-     - Opacity: `1` → `0`
-     - Y position: `0` → `-17.5rem`
-     - Scale: `1` → `1.5`
-     - Duration: `4 seconds`
-   - **After animation completes**: Instantly resets to starting position (no animation back)
+   - **Alternates between two pulse elements**: `.circle-pulse:nth-child(1)` and `.circle-pulse:nth-child(2)`
+
+   **For the ANIMATING pulse:**
+
+   - Opacity: `1` → `0` (with ease, 4s)
+   - Y position: `0` → `-17.5rem` (with ease, 4s)
+   - Scale: `1` → `1.5` (with ease, 4s)
+
+   **For the RESETTING pulse:**
+
+   - Scale & Y: **Instantly snap** back to `1` and `0` (no animation)
+   - Opacity: Gradually fades `0` → `1` **linearly** over the full interval duration (e.g., 5s)
 
 ---
 
 ## 🎬 Animation Timeline
 
+### **On Page Load:**
+
 ```
-Card Change → Event Fires → Pulse Starts → Pulse Completes → Instant Reset → Ready for Next Card
-    ↓             ↓              ↓               ↓                 ↓
-  500ms         0ms           0-4s            4s              instant
+Child 1: Animates out (opacity/y/scale over 4s)
+Child 2: Stays ready at starting position (opacity: 1, y: 0, scale: 1)
 ```
+
+### **Card Change Pattern (5s interval example):**
+
+**Change 1 (t=0s):**
+
+```
+Child 1: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
+Child 2: Animates out (opacity/y/scale over 4s)
+```
+
+**Change 2 (t=5s):**
+
+```
+Child 1: Animates out (opacity/y/scale over 4s)
+Child 2: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
+```
+
+**Change 3 (t=10s):**
+
+```
+Child 1: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
+Child 2: Animates out (opacity/y/scale over 4s)
+```
+
+And continues alternating...
 
 ---
 
@@ -77,18 +111,29 @@ npx webflow library share
 </script>
 ```
 
-### **Step 3: Add Pulse Element to Page**
+### **Step 3: Add Pulse Elements to Page**
 
-Make sure you have an element with the class `.circle-pulse` on your Webflow page where you want the pulse effect to appear.
+**IMPORTANT:** You need **TWO** elements with the class `.circle-pulse` on your Webflow page for the alternating effect to work:
+
+```html
+<div class="circle-pulse"></div>
+<!-- Child 1 -->
+<div class="circle-pulse"></div>
+<!-- Child 2 -->
+```
+
+The script will automatically alternate between these two elements, creating a seamless continuous pulse effect.
 
 ---
 
 ## 🎯 Key Features
 
+✅ **Alternating Pulses** - Two pulses alternate for continuous effect  
 ✅ **Seamless Sync** - Pulse triggers exactly when card changes  
-✅ **Instant Reset** - No animation back, pulse snaps to start position  
-✅ **No Overlap** - Each pulse completes before next card change  
+✅ **Smart Reset** - Scale/Y instant snap, opacity linear fade  
+✅ **No Gaps** - One pulse fades in while the other pulses out  
 ✅ **Cross-Shadow DOM** - Works despite component isolation  
+✅ **Auto-Timing** - Interval duration passed from React component  
 ✅ **Configurable** - Adjust interval to match your desired timing
 
 ---
@@ -114,8 +159,12 @@ Make sure you have an element with the class `.circle-pulse` on your Webflow pag
 1. **Upload the component** to Webflow
 2. **Add the script** to Custom Code
 3. **Add the component** to your page
-4. **Add a `.circle-pulse` element** to your page
-5. **Publish and test** - the pulse should trigger on every card change!
+4. **Add TWO `.circle-pulse` elements** to your page (required for alternating effect)
+5. **Publish and test** - you should see:
+   - Child 1 pulses on page load
+   - Pulses alternate between child 2 and child 1 on each card change
+   - While one pulse animates out, the other fades back in
+   - Seamless continuous effect!
 
 ---
 
@@ -123,6 +172,9 @@ Make sure you have an element with the class `.circle-pulse` on your Webflow pag
 
 - **Event Name**: `beside-card-change`
 - **Event Type**: `CustomEvent`
+- **Event Data**: `{ interval: number }` - seconds between card changes
 - **Scope**: Global `window` object
 - **SSR Safe**: Checks for `window` before dispatching
 - **GSAP Required**: Script uses GSAP for animations
+- **Minimum Elements**: Requires 2 `.circle-pulse` elements for alternating effect
+- **Alternation**: Starts with child(1) on load, then child(2), then back to child(1), etc.
