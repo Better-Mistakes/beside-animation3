@@ -14,7 +14,11 @@ interface CardData {
   content?: React.ReactNode;
 }
 
-export function BesideAnimation() {
+interface BesideAnimationProps {
+  interval?: number; // Interval in seconds
+}
+
+export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -338,10 +342,10 @@ export function BesideAnimation() {
 
     const timer = setTimeout(() => {
       nextCard();
-    }, 5000);
+    }, interval * 1000); // Convert seconds to milliseconds
 
     return () => clearTimeout(timer);
-  }, [currentCardIndex, nextCard, isPlaying]);
+  }, [currentCardIndex, nextCard, isPlaying, interval]);
 
   return (
     <div className="font-sans flex flex-col items-center justify-center">
