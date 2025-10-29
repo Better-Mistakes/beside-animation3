@@ -179,19 +179,26 @@ function initCardChangePulse() {
 
   if (!circlePulse1 || !circlePulse2) return; // Need both pulse elements
 
+  // Set initial states - is--2 should be ready and visible
+  gsap.set(circlePulse2, {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+  });
+
   // Track which pulse to animate next (starts with is--2 because is--1 animated on load)
   let animateIs2Next = true;
 
   // Listen for card change events from React component
   window.addEventListener("beside-card-change", (event) => {
-    // Get interval duration from event detail (default to 5 if not provided)
-    const interval = event.detail?.interval || 5;
-
     // Determine which pulse to animate and which to reset
     const animatingPulse = animateIs2Next ? circlePulse2 : circlePulse1;
     const resettingPulse = animateIs2Next ? circlePulse1 : circlePulse2;
 
-    // Animate the current pulse (pulse out)
+    // Kill any existing animations on both pulses to prevent stacking
+    gsap.killTweensOf([animatingPulse, resettingPulse]);
+
+    // Animate the current pulse OUT (4s)
     gsap.to(animatingPulse, {
       opacity: 0,
       y: "-17.5rem",
@@ -200,17 +207,17 @@ function initCardChangePulse() {
       ease: "power4.out",
     });
 
-    // Reset the other pulse
+    // Animate the other pulse IN (4s)
     // 1. Instantly reset scale and y (no animation)
     gsap.set(resettingPulse, {
       scale: 1,
       y: 0,
     });
 
-    // 2. Fade opacity from 0 to 1 linearly over the full interval
+    // 2. Fade opacity from 0 to 1 over 4 seconds (same duration as pulse out)
     gsap.to(resettingPulse, {
       opacity: 1,
-      duration: interval, // Full interval duration
+      duration: 4, // Match the pulse out duration
       ease: "none", // Linear, no easing
     });
 

@@ -22,16 +22,16 @@ The **circle pulse animation** now syncs perfectly with the **card changes** in 
    - Listens for the `'beside-card-change'` event
    - **Alternates between two pulse elements**: `.circle-pulse.is--1` and `.circle-pulse.is--2`
 
-   **For the ANIMATING pulse:**
+   **For the ANIMATING pulse (OUT):**
 
    - Opacity: `1` → `0` (with ease, 4s)
    - Y position: `0` → `-17.5rem` (with ease, 4s)
    - Scale: `1` → `1.5` (with ease, 4s)
 
-   **For the RESETTING pulse:**
+   **For the RESETTING pulse (IN) - happens simultaneously:**
 
    - Scale & Y: **Instantly snap** back to `1` and `0` (no animation)
-   - Opacity: Gradually fades `0` → `1` **linearly** over the full interval duration (e.g., 5s)
+   - Opacity: Gradually fades `0` → `1` **linearly** over **4 seconds** (matches pulse out duration)
 
 ---
 
@@ -49,22 +49,25 @@ The **circle pulse animation** now syncs perfectly with the **card changes** in 
 **Change 1 (t=0s):**
 
 ```
-.is--1: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
-.is--2: Animates out (opacity/y/scale over 4s)
+SIMULTANEOUSLY for 4 seconds:
+.is--1: Scale/Y snap to initial (INSTANT) | Opacity fades 0→1 (linear, 4s)
+.is--2: Animates out - opacity/y/scale (eased, 4s)
 ```
 
 **Change 2 (t=5s):**
 
 ```
-.is--1: Animates out (opacity/y/scale over 4s)
-.is--2: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
+SIMULTANEOUSLY for 4 seconds:
+.is--1: Animates out - opacity/y/scale (eased, 4s)
+.is--2: Scale/Y snap to initial (INSTANT) | Opacity fades 0→1 (linear, 4s)
 ```
 
 **Change 3 (t=10s):**
 
 ```
-.is--1: Scale/Y snap to 0/0 INSTANTLY | Opacity fades 0→1 linearly over 5s
-.is--2: Animates out (opacity/y/scale over 4s)
+SIMULTANEOUSLY for 4 seconds:
+.is--1: Scale/Y snap to initial (INSTANT) | Opacity fades 0→1 (linear, 4s)
+.is--2: Animates out - opacity/y/scale (eased, 4s)
 ```
 
 And continues alternating...
@@ -131,9 +134,9 @@ The script will automatically alternate between `.is--1` and `.is--2`, creating 
 ✅ **Alternating Pulses** - Two pulses alternate for continuous effect  
 ✅ **Seamless Sync** - Pulse triggers exactly when card changes  
 ✅ **Smart Reset** - Scale/Y instant snap, opacity linear fade  
+✅ **Synchronized Animation** - Both pulses animate for 4 seconds simultaneously (one in, one out)  
 ✅ **No Gaps** - One pulse fades in while the other pulses out  
 ✅ **Cross-Shadow DOM** - Works despite component isolation  
-✅ **Auto-Timing** - Interval duration passed from React component  
 ✅ **Configurable** - Adjust interval to match your desired timing
 
 ---
