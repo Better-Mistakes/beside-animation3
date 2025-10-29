@@ -27,6 +27,7 @@ export function BesideAnimation({
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false); // Start paused
   const [hasStarted, setHasStarted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false); // Card visibility
 
   const animatedTextPrepItem1 = "Role: Backend & AI Lead at Beside.";
 
@@ -342,16 +343,21 @@ export function BesideAnimation({
     }, 500);
   }, [cards.length]);
 
-  // Handle start delay
+  // Handle start delay - show card and trigger jiggle
   useEffect(() => {
     if (hasStarted) return;
 
-    const startTimer = setTimeout(() => {
-      setIsPlaying(true);
+    const showCardTimer = setTimeout(() => {
+      setIsVisible(true); // Show the card
       setHasStarted(true);
+
+      // After shake animation completes (~0.5s), start interval timer
+      setTimeout(() => {
+        setIsPlaying(true);
+      }, 500); // Wait for shake animation to complete
     }, startDelay * 1000); // Convert seconds to milliseconds
 
-    return () => clearTimeout(startTimer);
+    return () => clearTimeout(showCardTimer);
   }, [startDelay, hasStarted]);
 
   // Handle card transitions
@@ -371,8 +377,10 @@ export function BesideAnimation({
         className={cn(
           "w-full max-w-[28rem] bg-background-elevated/10 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-5 shadow-base rounded-[2.75rem] relative overflow-clip",
           "animate-[card-enter_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards]",
+          "transition-opacity duration-300",
           isTransitioning &&
-            "animate-[card-transition-out_0.1s_ease-spring_forwards]"
+            "animate-[card-transition-out_0.1s_ease-spring_forwards]",
+          !isVisible && "opacity-0"
         )}
       >
         {!isTransitioning && (
@@ -398,7 +406,9 @@ export function BesideAnimation({
             key={`header-${currentCard.id}`}
             className={cn(
               "flex gap-4 justify-between items-center w-full",
-              currentCardIndex === 0 && "animate-[shake_0.5s_ease-out_forwards]"
+              isVisible &&
+                currentCardIndex === 0 &&
+                "animate-[shake_0.5s_ease-out_forwards]"
             )}
           >
             <div className="relative flex items-center justify-center size-12">
