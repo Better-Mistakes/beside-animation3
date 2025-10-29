@@ -24,7 +24,7 @@
     "@types/react-dom": "^19",
     "@webflow/data-types": "^1.0.2",
     "@webflow/react": "^1.0.2",
-    "@webflow/webflow-cli": "^1.8.47",
+    "@webflow/webflow-cli": "^1.8.48",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
