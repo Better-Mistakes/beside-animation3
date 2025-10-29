@@ -131,7 +131,7 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
     <div className="font-sans flex flex-col items-center justify-center">
       <motion.div
         layout="size"
-        className="w-full max-w-md bg-white/80 backdrop-blur-xl text-gray-900 flex flex-col items-center justify-center p-5 shadow-lg rounded-[44px] relative overflow-clip"
+        className="w-full max-w-[360px] bg-white/80 backdrop-blur-xl text-gray-900 flex flex-col items-center justify-center px-4 py-3 shadow-lg rounded-[28px] relative overflow-clip"
         initial={{
           opacity: 0,
           y: 200,
@@ -150,11 +150,11 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
           ease: [0.175, 0.885, 0.32, 1.1],
         }}
       >
-        <div className="flex gap-4 justify-between items-center relative w-full">
+        <div className="flex gap-3 items-center relative w-full">
           <AnimatePresence mode="popLayout">
             <motion.div
               key={`header-${currentCard.id}`}
-              className="flex gap-4 justify-between items-center"
+              className="flex gap-3 items-center w-full"
               initial={{ scale: 1 }}
               animate={{
                 scale: 1,
@@ -176,7 +176,7 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
                 }),
               }}
             >
-              <div className="relative flex items-center justify-center w-12 h-12">
+              <div className="relative flex items-center justify-center w-10 h-10">
                 <motion.span
                   key={`avatar-${currentCard.avatarUrl}`}
                   initial={{
@@ -191,7 +191,7 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
                     delay: 0.1,
                     ease: [0.175, 0.885, 0.32, 1.1],
                   }}
-                  className="relative flex w-12 h-12 shrink-0 overflow-hidden rounded-full shadow-lg"
+                  className="relative flex w-10 h-10 shrink-0 overflow-hidden rounded-full shadow-md"
                 >
                   <motion.img
                     initial={{
@@ -212,9 +212,9 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
                 </motion.span>
               </div>
 
-              <div className="flex flex-col gap-0.5 flex-1 h-fit overflow-hidden">
+              <div className="flex flex-col gap-0.5 flex-1 min-w-0 h-fit overflow-hidden">
                 <motion.span
-                  className="text-gray-900 text-base font-semibold"
+                  className="text-gray-900 text-sm font-semibold"
                   initial={{
                     opacity: 0,
                     x: -8,
@@ -246,7 +246,7 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
                   />
                 </motion.span>
                 <motion.span
-                  className="text-gray-600 text-base max-w-sm whitespace-nowrap overflow-hidden relative"
+                  className="text-gray-600 text-xs whitespace-nowrap overflow-hidden relative"
                   initial={{
                     opacity: 0,
                     x: -8,
@@ -286,32 +286,30 @@ export const NotificationCarousel: React.FC<NotificationCarouselProps> = ({
                 </motion.span>
               </div>
 
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 flex h-fit items-center justify-between mr-2 shrink-0">
-                <motion.img
-                  initial={{
-                    opacity: 0,
-                    filter: "blur(5px)",
-                    scale: 0.5,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    filter: "blur(0px)",
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    filter: "blur(5px)",
-                    scale: 0.5,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0,
-                    ease: [0.175, 0.885, 0.32, 1.1],
-                  }}
-                  src={currentCard.iconUrl}
-                  className="relative flex w-8 h-8 shrink-0 overflow-hidden rounded-lg p-1 aspect-square"
-                />
-              </div>
+              <motion.img
+                initial={{
+                  opacity: 0,
+                  filter: "blur(5px)",
+                  scale: 0.5,
+                }}
+                animate={{
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  filter: "blur(5px)",
+                  scale: 0.5,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0,
+                  ease: [0.175, 0.885, 0.32, 1.1],
+                }}
+                src={currentCard.iconUrl}
+                className="w-7 h-7 shrink-0 rounded-lg p-1"
+              />
             </motion.div>
           </AnimatePresence>
         </div>
