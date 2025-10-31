@@ -44,7 +44,7 @@
   --shadow-card-large: 0 4px 80px 0 rgba(0, 0, 0, 0.06),
     0 2px 20px 0 rgba(0, 0, 0, 0.02), 0 2px 6px 0 rgba(0, 0, 0, 0.04);
   --shadow-base: 0 0 46px 0 rgba(0, 0, 0, 0.08),
-    0 0 8px 0 rgba(255, 255, 255, 0.06);
+    0 0 8px 0 rgba(255, 255, 255, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
 
   --shadow-card-list: 0 4.76446px 64.3202px rgba(221, 164, 0, 0.2),
     inset 0px 0px 5.95557px rgba(255, 255, 255, 0.17);
@@ -199,8 +199,13 @@
   @keyframes card-enter {
     0% {
       opacity: 0;
-      transform: translateY(-2rem) rotateX(25deg) scale(0);
+      transform: translateY(-5rem) rotateX(25deg) scale(0);
       filter: blur(2rem);
+    }
+    50% {
+      opacity: 0.75;
+      transform: translateY(-1.25rem) rotateX(12.5deg) scale(1.05);
+      filter: blur(1rem);
     }
     100% {
       opacity: 1;
@@ -212,7 +217,7 @@
   @keyframes card-transition-out {
     to {
       opacity: 1;
-      transform: translateY(0) scale(0.9);
+      transform: translateY(0rem) scale(0.9);
     }
   }
 
