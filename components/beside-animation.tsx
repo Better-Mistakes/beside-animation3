@@ -344,7 +344,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
   }, [nextCard, isPlaying, interval]);
 
   return (
-    <div className="font-sans flex flex-col items-center justify-center px-4 md:px-0 min-h-screen">
+    <div className="font-sans flex flex-col items-center justify-center">
       <div
         className={cn(
           "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-5 shadow-base rounded-[44px] relative overflow-clip",
