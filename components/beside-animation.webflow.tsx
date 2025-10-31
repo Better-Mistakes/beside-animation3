@@ -1,6 +1,7 @@
 import { declareComponent } from "@webflow/react";
 import { props } from "@webflow/data-types";
 import { BesideAnimation } from "./beside-animation";
+import "../app/fonts.css";
 import "../app/globals.css";
 
 export default declareComponent(BesideAnimation, {
