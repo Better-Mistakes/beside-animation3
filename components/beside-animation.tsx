@@ -19,10 +19,13 @@ interface BesideAnimationProps {
 }
 
 export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
+  const startDelay = 3; // 3-second delay before first card appears
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false); // Start paused
   const [cycle, setCycle] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false); // Card visibility
 
   const animatedTextPrepItem1 = "Role: Backend & AI Lead at Beside.";
 
@@ -329,8 +332,39 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
     setTimeout(() => {
       setCurrentCardIndex((prev) => (prev < cards.length - 1 ? prev + 1 : 0));
       setIsTransitioning(false);
+
+      // Emit custom event for Webflow script to sync pulse animation
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(
+          new CustomEvent("beside-card-change", {
+            detail: { interval: interval },
+          })
+        );
+      }
     }, 500);
-  }, [cards.length]);
+  }, [cards.length, interval]);
+
+  // Handle start delay - show card and emit card-load event
+  useEffect(() => {
+    if (hasStarted) return;
+
+    const showCardTimer = setTimeout(() => {
+      setIsVisible(true);
+      setHasStarted(true);
+
+      // Emit event for initial card load (for Webflow animations)
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("beside-card-load"));
+      }
+
+      // After shake animation completes (~0.5s), start interval timer
+      setTimeout(() => {
+        setIsPlaying(true);
+      }, 500);
+    }, startDelay * 1000); // Convert seconds to milliseconds
+
+    return () => clearTimeout(showCardTimer);
+  }, [startDelay, hasStarted]);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -345,136 +379,140 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
 
   return (
     <div className="font-sans flex flex-col items-center justify-center">
-      <div
-        className={cn(
-          "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-5 shadow-base rounded-[44px] relative overflow-clip",
-          "animate-[card-enter_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] pointer-events-none touch-none",
-          isTransitioning &&
-            "animate-[card-transition-out_0.1s_ease-spring_forwards]"
-        )}
-      >
-        <div className="@container/card-header flex gap-2 justify-between items-center relative w-full pointer-events-none touch-none">
-          <div
-            key={`header-${currentCard.id}`}
-            className={cn(
-              "flex gap-4 justify-between items-center w-full",
-              currentCardIndex === 0 && "animate-[shake_0.5s_ease-out_forwards]"
-            )}
-          >
-            <div className="relative flex items-center justify-center size-12">
-              <span
-                key={`avatar-${currentCard.avatar}`}
-                className={cn(
-                  "relative flex size-8 shrink-0 overflow-hidden rounded-full",
-                  "size-12 shadow-[0_6px_112px_0_rgba(0,0,0,0.06),0_2px_28px_0_rgba(0,0,0,0.02),0_2px_8px_0_rgba(0,0,0,0.04)] p-0",
-                  "animate-[fade-in-blur-sm_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0",
-                  currentCard.roundedAvatar &&
-                    "rounded-2xl p-2 bg-background-elevated"
-                )}
-              >
-                <img
-                  alt={currentCard.title}
-                  src={currentCard.avatar}
-                  className="size-full aspect-square animate-[fade-in-blur-xs_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
-                />
-              </span>
-
-              {(currentCard.id === "incoming-call" ||
-                currentCard.id === "meeting-prep" ||
-                currentCard.id === "writing-notes" ||
-                currentCard.id === "meeting-notes-ready") && (
+      {isVisible && (
+        <div
+          className={cn(
+            "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-5 shadow-base rounded-[44px] relative overflow-clip",
+            "animate-[card-enter_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] pointer-events-none touch-none",
+            isTransitioning &&
+              "animate-[card-transition-out_0.1s_ease-spring_forwards]"
+          )}
+        >
+          <div className="@container/card-header flex gap-2 justify-between items-center relative w-full pointer-events-none touch-none">
+            <div
+              key={`header-${currentCard.id}`}
+              className={cn(
+                "flex gap-4 justify-between items-center w-full",
+                isVisible &&
+                  currentCardIndex === 0 &&
+                  "animate-[shake_0.5s_ease-out_forwards]"
+              )}
+            >
+              <div className="relative flex items-center justify-center size-12">
                 <span
-                  key={`logo-beside-${currentCard.avatar}`}
-                  className="size-5.5 absolute bottom-0 right-0 bg-background-elevated rounded-lg p-1 shadow-[0_0_12px_0_rgba(0,0,0,0.08)] animate-[fade-in-blur-xs_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                  key={`avatar-${currentCard.avatar}`}
+                  className={cn(
+                    "relative flex size-8 shrink-0 overflow-hidden rounded-full",
+                    "size-12 shadow-[0_6px_112px_0_rgba(0,0,0,0.06),0_2px_28px_0_rgba(0,0,0,0.02),0_2px_8px_0_rgba(0,0,0,0.04)] p-0",
+                    "animate-[fade-in-blur-sm_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0",
+                    currentCard.roundedAvatar &&
+                      "rounded-2xl p-2 bg-background-elevated"
+                  )}
                 >
                   <img
-                    src="https://besideanimation-code.netlify.app/assets/img/logo.svg"
-                    className="size-full aspect-square"
+                    alt={currentCard.title}
+                    src={currentCard.avatar}
+                    className="size-full aspect-square animate-[fade-in-blur-xs_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
                   />
                 </span>
-              )}
-            </div>
 
-            <div className="flex flex-col h-fit w-full overflow-hidden flex-1">
-              <span
-                className="text-text-primary/90 text-body-medium max-h-10 w-full flex-1 flex whitespace-nowrap font-semibold animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
-                style={{
-                  maskImage:
-                    "linear-gradient(to left, transparent 1%, #000000 10%)",
-                }}
-              >
-                <RollingText
-                  text={currentCard.title}
-                  isVisible={true}
-                  delay={0}
-                />
-              </span>
-              <span
-                className="text-text-primary/50 flex-1 flex items-center text-body-medium w-full whitespace-nowrap overflow-hidden max-h-12 animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
-                style={{
-                  maskImage:
-                    "linear-gradient(to left, transparent 1%, #000000 10%)",
-                }}
-              >
-                {currentCard.id === "new-lead" && (
+                {(currentCard.id === "incoming-call" ||
+                  currentCard.id === "meeting-prep" ||
+                  currentCard.id === "writing-notes" ||
+                  currentCard.id === "meeting-notes-ready") && (
+                  <span
+                    key={`logo-beside-${currentCard.avatar}`}
+                    className="size-5.5 absolute bottom-0 right-0 bg-background-elevated rounded-lg p-1 shadow-[0_0_12px_0_rgba(0,0,0,0.08)] animate-[fade-in-blur-xs_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                  >
+                    <img
+                      src="https://besideanimation-code.netlify.app/assets/img/logo.svg"
+                      className="size-full aspect-square"
+                    />
+                  </span>
+                )}
+              </div>
+
+              <div className="flex flex-col h-fit w-full overflow-hidden flex-1">
+                <span
+                  className="text-text-primary/90 text-body-medium max-h-10 w-full flex-1 flex whitespace-nowrap font-semibold animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
+                  style={{
+                    maskImage:
+                      "linear-gradient(to left, transparent 1%, #000000 10%)",
+                  }}
+                >
+                  <RollingText
+                    text={currentCard.title}
+                    isVisible={true}
+                    delay={0}
+                  />
+                </span>
+                <span
+                  className="text-text-primary/50 flex-1 flex items-center text-body-medium w-full whitespace-nowrap overflow-hidden max-h-12 animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                  style={{
+                    maskImage:
+                      "linear-gradient(to left, transparent 1%, #000000 10%)",
+                  }}
+                >
+                  {currentCard.id === "new-lead" && (
+                    <img
+                      src="https://besideanimation-code.netlify.app/assets/img/hubspot.png"
+                      className="size-4 flex-shrink-0 inline-block mr-1"
+                      alt="HubSpot"
+                    />
+                  )}
+                  <RollingText
+                    text={currentCard.subtitle}
+                    isVisible={true}
+                    delay={0.5}
+                  />
+                </span>
+              </div>
+
+              <div className="flex h-fit items-center justify-between mr-2 shrink-0">
+                {currentCard.id === "team-joined" ? (
+                  <div className="*:data-[slot=avatar]:ring-border flex -space-x-2 items-center *:data-[slot=avatar]:ring-3 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
+                    <img
+                      data-slot="avatar"
+                      src="https://besideanimation-code.netlify.app/assets/img/avatar.png"
+                      className="z-[3] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0s_forwards] opacity-0"
+                    />
+
+                    <img
+                      data-slot="avatar"
+                      src="https://besideanimation-code.netlify.app/assets/img/avatar2.png"
+                      className="z-[2] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
+                    />
+
+                    <img
+                      data-slot="avatar"
+                      src="https://besideanimation-code.netlify.app/assets/img/avatar3.png"
+                      className="z-[1] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                    />
+
+                    <span
+                      data-slot="avatar"
+                      className="z-[0] relative flex size-8 shrink-0 overflow-hidden items-center justify-center rounded-full bg-background-grouped/50 p-1 text-body-tiny font-medium tabular-nums animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.15s_forwards] opacity-0"
+                    >
+                      +3
+                    </span>
+                  </div>
+                ) : (
                   <img
-                    src="https://besideanimation-code.netlify.app/assets/img/hubspot.png"
-                    className="size-4 flex-shrink-0 inline-block mr-1"
-                    alt="HubSpot"
+                    src={currentCard.icon}
+                    className="relative flex size-8 shrink-0 overflow-hidden rounded-xs p-1 aspect-square animate-[fade-in-icon_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
                   />
                 )}
-                <RollingText
-                  text={currentCard.subtitle}
-                  isVisible={true}
-                  delay={0.5}
-                />
-              </span>
-            </div>
-
-            <div className="flex h-fit items-center justify-between mr-2 shrink-0">
-              {currentCard.id === "team-joined" ? (
-                <div className="*:data-[slot=avatar]:ring-border flex -space-x-2 items-center *:data-[slot=avatar]:ring-3 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
-                  <img
-                    data-slot="avatar"
-                    src="https://besideanimation-code.netlify.app/assets/img/avatar.png"
-                    className="z-[3] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0s_forwards] opacity-0"
-                  />
-
-                  <img
-                    data-slot="avatar"
-                    src="https://besideanimation-code.netlify.app/assets/img/avatar2.png"
-                    className="z-[2] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
-                  />
-
-                  <img
-                    data-slot="avatar"
-                    src="https://besideanimation-code.netlify.app/assets/img/avatar3.png"
-                    className="z-[1] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
-                  />
-
-                  <span
-                    data-slot="avatar"
-                    className="z-[0] relative flex size-8 shrink-0 overflow-hidden items-center justify-center rounded-full bg-background-grouped/50 p-1 text-body-tiny font-medium tabular-nums animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.15s_forwards] opacity-0"
-                  >
-                    +3
-                  </span>
-                </div>
-              ) : (
-                <img
-                  src={currentCard.icon}
-                  className="relative flex size-8 shrink-0 overflow-hidden rounded-xs p-1 aspect-square animate-[fade-in-icon_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
-                />
-              )}
+              </div>
             </div>
           </div>
+
+          {currentCard.hasContent && currentCard.content && (
+            <div key={`content-${currentCard.id}`} className="relative w-full">
+              <div className="mt-6">{currentCard.content}</div>
+            </div>
+          )}
         </div>
-
-        {currentCard.hasContent && currentCard.content && (
-          <div key={`content-${currentCard.id}`} className="relative w-full">
-            <div className="mt-6">{currentCard.content}</div>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }

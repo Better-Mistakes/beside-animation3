@@ -263,59 +263,225 @@ function initCardChangePulse() {
 // --------------------- heading sync on card change --------------------- //
 
 function initHeadingSync() {
-  const headings = document.querySelectorAll(".heading-style-64-hero");
+  // Select headings in proper order
+  const loadingStaggerHeading = document.querySelector(
+    '.heading-style-64-hero[animation="loading-stagger"]'
+  );
+  const allHeadings = document.querySelectorAll(".heading-style-64-hero");
+  const h1wrapper = document.querySelector(".h1wrapper");
 
-  if (headings.length === 0) return; // No headings to sync
+  if (!loadingStaggerHeading || !h1wrapper || allHeadings.length < 3) {
+    console.warn("Required heading elements not found");
+    return;
+  }
 
-  // Set initial state - only first heading visible, rest hidden and blurred
-  headings.forEach((heading, index) => {
-    if (index === 0) {
-      gsap.set(heading, { opacity: 1, filter: "blur(0rem)" });
-    } else {
-      gsap.set(heading, { opacity: 0, filter: "blur(1rem)" });
+  // Find the sibling heading (second .heading-style-64-hero outside h1wrapper)
+  let siblingHeading = null;
+  allHeadings.forEach((heading) => {
+    if (
+      heading !== loadingStaggerHeading &&
+      !h1wrapper.contains(heading) &&
+      !siblingHeading
+    ) {
+      siblingHeading = heading;
     }
   });
 
-  // Track current visible heading (starts at 0, will go to 1 when card loads)
-  let currentHeadingIndex = 0;
+  // Get all headings inside h1wrapper
+  const h1wrapperHeadings = h1wrapper.querySelectorAll(
+    ".heading-style-64-hero"
+  );
 
-  // Listen for card LOAD event (when card first appears after 3s)
+  if (!siblingHeading || h1wrapperHeadings.length === 0) {
+    console.warn("Sibling heading or h1wrapper headings not found");
+    return;
+  }
+
+  console.log("Heading sync initialized:");
+  console.log("- Loading stagger heading:", loadingStaggerHeading);
+  console.log("- Sibling heading:", siblingHeading);
+  console.log("- H1wrapper headings:", h1wrapperHeadings.length);
+
+  // Set initial states
+  gsap.set(loadingStaggerHeading, { opacity: 1, filter: "blur(0rem)" });
+  gsap.set(siblingHeading, { opacity: 0, filter: "blur(1rem)" });
+
+  // Position h1wrapper as relative container
+  gsap.set(h1wrapper, {
+    position: "relative",
+    width: "auto",
+    height: "auto",
+  });
+
+  // Position all h1wrapper headings absolutely and hide them
+  gsap.set(h1wrapperHeadings, {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    opacity: 0,
+    filter: "blur(1rem)",
+    whiteSpace: "nowrap", // Keep text on one line
+  });
+
+  // Track current visible heading inside h1wrapper (starts at 0)
+  let currentH1WrapperIndex = 0;
+
+  // Track if card has loaded
+  let cardHasLoaded = false;
+
+  // Helper function to ensure only one heading is visible at a time
+  function enforceOneHeadingVisible() {
+    if (!cardHasLoaded) return; // Don't enforce before card loads
+
+    console.log(
+      "Enforcing one heading visible - index:",
+      currentH1WrapperIndex
+    );
+
+    // Kill all ongoing heading animations
+    gsap.killTweensOf(h1wrapperHeadings);
+
+    // Hide all h1wrapper headings except the current one
+    h1wrapperHeadings.forEach((heading, index) => {
+      if (index === currentH1WrapperIndex) {
+        // Ensure current heading is visible
+        gsap.set(heading, {
+          opacity: 1,
+          filter: "blur(0rem)",
+          visibility: "visible",
+        });
+      } else {
+        // Ensure all other headings are hidden
+        gsap.set(heading, {
+          opacity: 0,
+          filter: "blur(1rem)",
+          visibility: "visible",
+        });
+      }
+    });
+  }
+
+  // Handle page visibility changes (tab switching)
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && cardHasLoaded) {
+      // Page became visible - enforce clean state
+      console.log("Page became visible - cleaning up headings");
+      enforceOneHeadingVisible();
+    }
+  });
+
+  // Listen for card LOAD event (when card first appears)
   window.addEventListener("beside-card-load", () => {
-    const heading1 = headings[0];
-    const heading2 = headings[1];
+    console.log("Card loaded - transitioning headings");
+    cardHasLoaded = true;
 
-    // Fade out heading 1 (animated)
-    gsap.to(heading1, {
+    const firstH1WrapperHeading = h1wrapperHeadings[0];
+
+    // Kill any ongoing animations first
+    gsap.killTweensOf([
+      loadingStaggerHeading,
+      siblingHeading,
+      firstH1WrapperHeading,
+    ]);
+
+    // Temporarily make heading visible to measure (keep opacity 0, remove blur)
+    gsap.set(firstH1WrapperHeading, {
+      opacity: 0,
+      filter: "blur(0rem)",
+      visibility: "visible",
+    });
+
+    // Get dimensions of first h1wrapper heading for initial wrapper size
+    const headingRect = firstH1WrapperHeading.getBoundingClientRect();
+
+    console.log("First heading dimensions:", {
+      width: headingRect.width,
+      height: headingRect.height,
+    });
+
+    // Set h1wrapper dimensions - 100% width on mobile, calculated on desktop
+    const isMobile = window.innerWidth < 992;
+    gsap.set(h1wrapper, {
+      width: isMobile ? "100%" : headingRect.width + "px",
+      height: headingRect.height + "px",
+    });
+
+    // Fade out loading stagger heading
+    gsap.to(loadingStaggerHeading, {
       opacity: 0,
       duration: 0.8,
       ease: "power4.out",
     });
 
-    // Fade in heading 2 with deblur (animated, at the same time)
-    gsap.to(heading2, {
+    // Fade in sibling heading
+    gsap.to(siblingHeading, {
       opacity: 1,
       filter: "blur(0rem)",
       duration: 0.8,
       ease: "power4.out",
     });
 
-    // Update to heading 2
-    currentHeadingIndex = 1;
+    // Fade in first h1wrapper heading
+    gsap.to(firstH1WrapperHeading, {
+      opacity: 1,
+      filter: "blur(0rem)",
+      duration: 0.8,
+      ease: "power4.out",
+    });
+
+    currentH1WrapperIndex = 0;
   });
 
   // Listen for card CHANGE events (subsequent card changes)
   window.addEventListener("beside-card-change", () => {
-    const currentHeading = headings[currentHeadingIndex];
+    console.log("Card changed - swapping h1wrapper headings");
 
-    // Calculate next heading index - cycle through headings 2-10 (indices 1-9)
-    let nextHeadingIndex = currentHeadingIndex + 1;
-    if (nextHeadingIndex > 9) {
-      nextHeadingIndex = 1; // Loop back to heading 2 (index 1)
+    const currentHeading = h1wrapperHeadings[currentH1WrapperIndex];
+
+    // Calculate next heading index - cycle through h1wrapper headings
+    let nextHeadingIndex = currentH1WrapperIndex + 1;
+    if (nextHeadingIndex >= h1wrapperHeadings.length) {
+      nextHeadingIndex = 0; // Loop back to first h1wrapper heading
     }
 
-    const nextHeading = headings[nextHeadingIndex];
+    const nextHeading = h1wrapperHeadings[nextHeadingIndex];
 
-    // Fade out current heading
+    // Kill all ongoing animations on h1wrapper headings
+    gsap.killTweensOf(h1wrapperHeadings);
+
+    // Ensure all OTHER headings (except current and next) are hidden
+    h1wrapperHeadings.forEach((heading, index) => {
+      if (index !== currentH1WrapperIndex && index !== nextHeadingIndex) {
+        gsap.set(heading, {
+          opacity: 0,
+          filter: "blur(1rem)",
+        });
+      }
+    });
+
+    // Temporarily make next heading visible (opacity 0) to measure it
+    gsap.set(nextHeading, {
+      opacity: 0,
+      filter: "blur(0rem)",
+      visibility: "visible",
+    });
+    const nextHeadingRect = nextHeading.getBoundingClientRect();
+
+    console.log("Next heading dimensions:", {
+      width: nextHeadingRect.width,
+      height: nextHeadingRect.height,
+    });
+
+    // Animate h1wrapper dimensions - 100% width on mobile, calculated on desktop
+    const isMobile = window.innerWidth < 992;
+    gsap.to(h1wrapper, {
+      width: isMobile ? "100%" : nextHeadingRect.width + "px",
+      height: nextHeadingRect.height + "px",
+      duration: 0.5,
+      ease: "power2.out",
+    });
+
+    // Fade out current heading with blur
     gsap.to(currentHeading, {
       opacity: 0,
       filter: "blur(1rem)",
@@ -323,7 +489,7 @@ function initHeadingSync() {
       ease: "power2.out",
     });
 
-    // Fade in next heading with blur effect
+    // Fade in next heading with deblur
     gsap.to(nextHeading, {
       opacity: 1,
       filter: "blur(0rem)",
@@ -333,7 +499,39 @@ function initHeadingSync() {
     });
 
     // Update current heading index
-    currentHeadingIndex = nextHeadingIndex;
+    currentH1WrapperIndex = nextHeadingIndex;
+  });
+
+  // Handle window resize - recalculate h1wrapper dimensions
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    // Debounce resize events to avoid too many calculations
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      // Only recalculate if we have a visible heading in h1wrapper
+      if (
+        currentH1WrapperIndex >= 0 &&
+        h1wrapperHeadings[currentH1WrapperIndex]
+      ) {
+        const currentHeading = h1wrapperHeadings[currentH1WrapperIndex];
+        const headingRect = currentHeading.getBoundingClientRect();
+        const isMobile = window.innerWidth < 992;
+
+        console.log("Window resized - recalculating h1wrapper dimensions:", {
+          width: isMobile ? "100%" : headingRect.width,
+          height: headingRect.height,
+          isMobile: isMobile,
+        });
+
+        // Update h1wrapper dimensions - 100% width on mobile, calculated on desktop
+        gsap.to(h1wrapper, {
+          width: isMobile ? "100%" : headingRect.width + "px",
+          height: headingRect.height + "px",
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      }
+    }, 150); // Wait 150ms after last resize event
   });
 }
 
