@@ -248,6 +248,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                 <img
                   className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.3s_forwards] opacity-0"
                   src="https://besideanimation-code.netlify.app/assets/img/avatar2.png"
+                  alt="Maxime"
                 />
 
                 <RollingText
@@ -261,6 +262,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                 <img
                   className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.5s_forwards] opacity-0"
                   src="https://besideanimation-code.netlify.app/assets/img/avatar4.png"
+                  alt="Matthias"
                 />
                 <RollingText
                   text="Matthias"
@@ -299,10 +301,10 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       hasContent: true,
       content: (
         <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-elevated/[0.08] rounded-full pl-6 pr-3 py-3 relative overflow-clip animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
-          <div className="flex items-center justify-center gap-2 relative">
+          <div className="flex items-center justify-center relative">
             <span
               data-slot="ask-beside-caret"
-              className="z-50 h-2/3 rounded-full bg-palette-teal w-0.5 block absolute top-1/2 -translate-y-1/2 left-0"
+              className="flex items-center justify-center h-6 rounded-full bg-palette-teal w-0.5 shrink-0"
               style={{
                 animation:
                   "fade-in-scale 0.2s ease-out 0.8s forwards, pulse 0.6s 0s infinite",
@@ -318,6 +320,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
             <img
               src="https://besideanimation-code.netlify.app/assets/icons/circle.arrow.up.svg"
               className="size-8 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.3s_forwards] opacity-0"
+              alt="Circle Arrow Up"
             />
           </div>
         </div>
@@ -427,6 +430,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                     <img
                       src="https://besideanimation-code.netlify.app/assets/img/logo.svg"
                       className="size-full aspect-square"
+                      alt="Beside Logo"
                     />
                   </span>
                 )}
@@ -475,18 +479,21 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                       data-slot="avatar"
                       src="https://besideanimation-code.netlify.app/assets/img/avatar.png"
                       className="z-[3] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0s_forwards] opacity-0"
+                      alt="Avatar"
                     />
 
                     <img
                       data-slot="avatar"
                       src="https://besideanimation-code.netlify.app/assets/img/avatar2.png"
                       className="z-[2] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
+                      alt="Avatar"
                     />
 
                     <img
                       data-slot="avatar"
                       src="https://besideanimation-code.netlify.app/assets/img/avatar3.png"
                       className="z-[1] relative flex size-8 shrink-0 overflow-hidden rounded-full aspect-square animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                      alt="Avatar"
                     />
 
                     <span
@@ -500,6 +507,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                   <img
                     src={currentCard.icon}
                     className="relative flex size-8 shrink-0 overflow-hidden rounded-xs p-1 aspect-square animate-[fade-in-icon_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
+                    alt="Icon"
                   />
                 )}
               </div>
