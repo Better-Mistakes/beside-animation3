@@ -68,7 +68,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       icon: "https://besideanimation-code.netlify.app/assets/icons/waveform.svg",
       hasContent: true,
       content: (
-        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[1.5625rem] relative overflow-clip min-h-[5rem] animate-[fade-in-up_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[1.5625rem] p-[1.25rem] relative overflow-clip min-h-[5rem] animate-[fade-in-up_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <RollingText
             text={animatedTextNewLead}
             isVisible={true}
@@ -106,7 +106,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       icon: "https://besideanimation-code.netlify.app/assets/icons/cursor.click.svg",
       hasContent: true,
       content: (
-        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[1.5625rem] pt-[0.25rem] relative overflow-clip animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[1.5625rem] p-[1.25rem] pt-[1rem] relative overflow-clip animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <div
             className="absolute z-[100] bottom-0 right-0 w-full h-2/3 backdrop-blur-md block rounded-b-[1.5625rem] bg-gradient-to-b from-background-view/10 to-transparent"
             style={{
@@ -229,7 +229,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       icon: "https://besideanimation-code.netlify.app/assets/icons/pencil.sparkle.svg",
       hasContent: true,
       content: (
-        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[1.5625rem] relative overflow-clip min-h-[9rem] animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[1.5625rem] p-[1.25rem] relative overflow-clip min-h-[9rem] animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <div className="flex flex-col gap-2">
             <RollingText
               text="MacOS App Development Workshop"
