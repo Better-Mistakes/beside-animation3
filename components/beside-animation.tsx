@@ -386,12 +386,12 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
         fontFamily:
           "OpenRunde, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
       }}
-      className="flex flex-col items-center justify-center"
+      className="flex flex-col items-center justify-center px-[1rem] md:px-0 min-h-screen"
     >
       {isVisible && (
         <div
           className={cn(
-            "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300",
+            "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-[1.25rem] shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300",
             "animate-[card-enter_0.5s_cubic-bezier(1,-0.4,0.35,0.95)_forwards] pointer-events-none touch-none",
             isTransitioning &&
               "animate-[card-transition-out_0.3s_cubic-bezier(1,-0.4,0.35,0.95)_forwards]"
