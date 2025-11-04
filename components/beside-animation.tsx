@@ -68,7 +68,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       icon: "https://besideanimation-code.netlify.app/assets/icons/waveform.svg",
       hasContent: true,
       content: (
-        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[25px] p-5 relative overflow-clip min-h-20 animate-[fade-in-up_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[1.5625rem] relative overflow-clip min-h-[5rem] animate-[fade-in-up_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <RollingText
             text={animatedTextNewLead}
             isVisible={true}
@@ -106,16 +106,16 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       icon: "https://besideanimation-code.netlify.app/assets/icons/cursor.click.svg",
       hasContent: true,
       content: (
-        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[25px] p-5 pt-4 relative overflow-clip animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[1.5625rem] pt-[0.25rem] relative overflow-clip animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <div
-            className="absolute z-[100] bottom-0 right-0 w-full h-2/3 backdrop-blur-md block rounded-b-[25px] bg-gradient-to-b from-background-view/10 to-transparent"
+            className="absolute z-[100] bottom-0 right-0 w-full h-2/3 backdrop-blur-md block rounded-b-[1.5625rem] bg-gradient-to-b from-background-view/10 to-transparent"
             style={{
               maskImage:
                 "linear-gradient(to bottom, transparent 50%, hsla(var(--background-view) / 1) 97.5%)",
             }}
           />
           <div className="z-50 flex items-center justify-between gap-1 text-palette-purple animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
-            <span className="size-6 rounded-xs p-0.5 text-palette-purple">
+            <span className="size-6 rounded-xs p-[0.125rem] text-palette-purple">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -154,10 +154,10 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
             <span className="flex-1 flex text-palette-purple text-body-small font-bold">
               5-Minute Prep
             </span>
-            <span className="size-6 rounded-xs p-1 text-text-primary/50">
+            <span className="size-6 rounded-xs p-[0.25rem] text-text-primary/50">
               <svg
-                width="16"
-                height="16"
+                width="1rem"
+                height="1rem"
                 viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -229,7 +229,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       icon: "https://besideanimation-code.netlify.app/assets/icons/pencil.sparkle.svg",
       hasContent: true,
       content: (
-        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[25px] p-5 relative overflow-clip min-h-36 animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-view/5 shadow-card-large rounded-[1.5625rem] relative overflow-clip min-h-[9rem] animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <div className="flex flex-col gap-2">
             <RollingText
               text="MacOS App Development Workshop"
@@ -238,7 +238,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
               className="text-text-primary text-body-large font-bold"
             />
             <div
-              className="flex items-center justify-start gap-6"
+              className="flex items-center justify-start gap-[1.5rem]"
               style={{
                 maskImage:
                   "linear-gradient(to top, transparent 0%, hsla(var(--background-view) / 1) 50%)",
@@ -246,7 +246,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
             >
               <div className="flex items-center justify-start gap-2">
                 <img
-                  className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.3s_forwards] opacity-0"
+                  className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.3s_forwards] opacity-0 rounded-full"
                   src="https://besideanimation-code.netlify.app/assets/img/avatar2.png"
                   alt="Maxime"
                 />
@@ -260,7 +260,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
               </div>
               <div className="flex items-center justify-start gap-2">
                 <img
-                  className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.5s_forwards] opacity-0"
+                  className="size-6 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.5s_forwards] opacity-0 rounded-full"
                   src="https://besideanimation-code.netlify.app/assets/img/avatar4.png"
                   alt="Matthias"
                 />
@@ -282,7 +282,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
             </p>
           </div>
           <div
-            className="absolute z-50 bottom-0 right-0 w-full h-2/3 backdrop-blur-lg rounded-b-[25px]"
+            className="absolute z-50 bottom-0 right-0 w-full h-2/3 backdrop-blur-lg rounded-b-[1.5625rem]"
             style={{
               maskImage:
                 "linear-gradient(to bottom, transparent 50%, hsla(var(--background-view) / 0.6) 100%)",
@@ -300,11 +300,11 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       icon: "https://besideanimation-code.netlify.app/assets/icons/pencil.sparkle.svg",
       hasContent: true,
       content: (
-        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-elevated/[0.08] rounded-full pl-6 pr-3 py-3 relative overflow-clip animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+        <div className="flex flex-col gap-2 justify-between border border-border-primary/5 bg-background-elevated/[0.08] rounded-full pl-[1.5rem] pr-[0.75rem] py-[0.75rem] relative overflow-clip animate-[fade-in-down_0.3s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
           <div className="flex items-center justify-center relative">
             <span
               data-slot="ask-beside-caret"
-              className="flex items-center justify-center h-6 rounded-full bg-palette-teal w-0.5 shrink-0"
+              className="flex items-center justify-center h-6 rounded-full bg-palette-teal w-[0.125rem] shrink-0"
               style={{
                 animation:
                   "fade-in-scale 0.2s ease-out 0.8s forwards, pulse 0.6s 0s infinite",
@@ -314,7 +314,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
             <RollingText
               text="How can I help?"
               isVisible={true}
-              className="ml-1 text-text-primary/50 text-body-large font-medium w-full"
+              className="ml-[0.25rem] text-text-primary/50 text-body-large font-medium w-full"
             />
 
             <img
@@ -381,14 +381,20 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
   }, [nextCard, isPlaying, interval]);
 
   return (
-    <div className="font-sans flex flex-col items-center justify-center">
+    <div
+      style={{
+        fontFamily:
+          "OpenRunde, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+      }}
+      className="flex flex-col items-center justify-center"
+    >
       {isVisible && (
         <div
           className={cn(
-            "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-5 shadow-base rounded-[44px] relative overflow-clip",
-            "animate-[card-enter_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] pointer-events-none touch-none",
+            "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300",
+            "animate-[card-enter_0.5s_cubic-bezier(1,-0.4,0.35,0.95)_forwards] pointer-events-none touch-none",
             isTransitioning &&
-              "animate-[card-transition-out_0.1s_ease-spring_forwards]"
+              "animate-[card-transition-out_0.3s_cubic-bezier(1,-0.4,0.35,0.95)_forwards]"
           )}
         >
           <div className="@container/card-header flex gap-2 justify-between items-center relative w-full pointer-events-none touch-none">
@@ -401,15 +407,15 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                   "animate-[shake_0.5s_ease-out_forwards]"
               )}
             >
-              <div className="relative flex items-center justify-center size-12">
+              <div className="relative flex items-center justify-center size-[3rem]">
                 <span
                   key={`avatar-${currentCard.avatar}`}
                   className={cn(
                     "relative flex size-8 shrink-0 overflow-hidden rounded-full",
-                    "size-12 shadow-[0_6px_112px_0_rgba(0,0,0,0.06),0_2px_28px_0_rgba(0,0,0,0.02),0_2px_8px_0_rgba(0,0,0,0.04)] p-0",
+                    "size-[3rem] shadow-[0_0.375rem_7rem_0_rgba(0,0,0,0.06),0_0.125rem_1.75rem_0_rgba(0,0,0,0.02),0_0.125rem_0.5rem_0_rgba(0,0,0,0.04)] p-0",
                     "animate-[fade-in-blur-sm_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0",
                     currentCard.roundedAvatar &&
-                      "rounded-2xl p-2 bg-background-elevated"
+                      "rounded-[1rem] p-[0.5rem] bg-background-elevated"
                   )}
                 >
                   <img
@@ -425,7 +431,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                   currentCard.id === "meeting-notes-ready") && (
                   <span
                     key={`logo-beside-${currentCard.avatar}`}
-                    className="size-5.5 absolute bottom-0 right-0 bg-background-elevated rounded-lg p-1 shadow-[0_0_12px_0_rgba(0,0,0,0.08)] animate-[fade-in-blur-xs_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                    className="size-[1.375rem] absolute bottom-0 right-0 bg-background-elevated rounded-[0.5rem] p-[0.25rem] shadow-[0_0_0.75rem_0_rgba(0,0,0,0.08)] animate-[fade-in-blur-xs_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
                   >
                     <img
                       src="https://besideanimation-code.netlify.app/assets/img/logo.svg"
@@ -438,7 +444,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
 
               <div className="flex flex-col h-fit w-full overflow-hidden flex-1">
                 <span
-                  className="text-text-primary/90 text-body-medium max-h-10 w-full flex-1 flex whitespace-nowrap font-semibold animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards] opacity-0"
+                  className="text-text-primary/90 text-body-medium max-h-[2.5rem] w-full flex-1 flex whitespace-nowrap font-semibold animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.05s_forwards]"
                   style={{
                     maskImage:
                       "linear-gradient(to left, transparent 1%, #000000 10%)",
@@ -451,7 +457,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                   />
                 </span>
                 <span
-                  className="text-text-primary/50 flex-1 flex items-center text-body-medium w-full whitespace-nowrap overflow-hidden max-h-12 animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards] opacity-0"
+                  className="text-text-primary/50 flex-1 flex items-center text-body-medium w-full whitespace-nowrap overflow-hidden max-h-[3rem] animate-[fade-in-left_0.2s_cubic-bezier(0.175,0.885,0.32,1.1)_0.1s_forwards]"
                   style={{
                     maskImage:
                       "linear-gradient(to left, transparent 1%, #000000 10%)",
@@ -460,7 +466,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                   {currentCard.id === "new-lead" && (
                     <img
                       src="https://besideanimation-code.netlify.app/assets/img/hubspot.png"
-                      className="size-4 flex-shrink-0 inline-block mr-1"
+                      className="size-4 flex-shrink-0 inline-block mr-[0.25rem]"
                       alt="HubSpot"
                     />
                   )}
@@ -472,9 +478,9 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                 </span>
               </div>
 
-              <div className="flex h-fit items-center justify-between mr-2 shrink-0">
+              <div className="flex h-fit items-center justify-between mr-[0.5rem] shrink-0">
                 {currentCard.id === "team-joined" ? (
-                  <div className="*:data-[slot=avatar]:ring-border flex -space-x-2 items-center *:data-[slot=avatar]:ring-3 animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
+                  <div className="*:data-[slot=avatar]:ring-border flex -space-x-2 items-center *:data-[slot=avatar]:ring-[0.1875rem] animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
                     <img
                       data-slot="avatar"
                       src="https://besideanimation-code.netlify.app/assets/img/avatar.png"
@@ -498,7 +504,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
 
                     <span
                       data-slot="avatar"
-                      className="z-[0] relative flex size-8 shrink-0 overflow-hidden items-center justify-center rounded-full bg-background-grouped/50 p-1 text-body-tiny font-medium tabular-nums animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.15s_forwards] opacity-0"
+                      className="z-[0] relative flex size-8 shrink-0 overflow-hidden items-center justify-center rounded-full bg-background-grouped/50 p-[0.25rem] text-body-tiny font-medium tabular-nums animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_0.15s_forwards] opacity-0"
                     >
                       +3
                     </span>
@@ -506,7 +512,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                 ) : (
                   <img
                     src={currentCard.icon}
-                    className="relative flex size-8 shrink-0 overflow-hidden rounded-xs p-1 aspect-square animate-[fade-in-icon_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
+                    className="relative flex size-8 shrink-0 overflow-hidden rounded-xs p-[0.25rem] aspect-square animate-[fade-in-icon_0.5s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0"
                     alt="Icon"
                   />
                 )}
@@ -515,8 +521,11 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
           </div>
 
           {currentCard.hasContent && currentCard.content && (
-            <div key={`content-${currentCard.id}`} className="relative w-full">
-              <div className="mt-6">{currentCard.content}</div>
+            <div
+              key={`content-${currentCard.id}`}
+              className="relative w-full card-shadow-large"
+            >
+              <div className="mt-[1.5rem]">{currentCard.content}</div>
             </div>
           )}
         </div>
