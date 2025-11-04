@@ -386,7 +386,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
         fontFamily:
           "OpenRunde, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
       }}
-      className="flex flex-col items-center justify-center px-[1rem] md:px-0 min-h-screen"
+      className="flex flex-col items-center justify-center"
     >
       {isVisible && (
         <div
