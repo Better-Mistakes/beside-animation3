@@ -156,8 +156,8 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
             </span>
             <span className="size-6 rounded-xs p-[0.25rem] text-text-primary/50">
               <svg
-                width="16"
-                height="16"
+                width="1rem"
+                height="1rem"
                 viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

@@ -36,15 +36,15 @@
   --color-palette-yellow: hsla(var(--palette-yellow));
   --color-palette-red: hsla(var(--palette-red));
 
-  --text-body-tiny: 12px;
-  --text-body-small: 13px;
-  --text-body-medium: 15px;
-  --text-body-large: 17px;
+  --text-body-tiny: 0.75rem;
+  --text-body-small: 0.8125rem;
+  --text-body-medium: 0.9375rem;
+  --text-body-large: 1.0625rem;
 
-  --shadow-card-large: 0 4px 80px 0 rgba(0, 0, 0, 0.06),
-    0 2px 20px 0 rgba(0, 0, 0, 0.02), 0 2px 6px 0 rgba(0, 0, 0, 0.04);
-  --shadow-base: 0 0 46px 0 rgba(0, 0, 0, 0.08),
-    0 0 8px 0 rgba(255, 255, 255, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  --shadow-card-large: 0 0.25rem 5rem 0 rgba(0, 0, 0, 0.06),
+    0 0.125rem 1.25rem 0 rgba(0, 0, 0, 0.02), 0 0.125rem 0.375rem 0 rgba(0, 0, 0, 0.04);
+  --shadow-base: 0 0 2.875rem 0 rgba(0, 0, 0, 0.08),
+    0 0 0.5rem 0 rgba(255, 255, 255, 0.06), 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.08);
 
   --shadow-card-list: 0 4.76446px 64.3202px rgba(221, 164, 0, 0.2),
     inset 0px 0px 5.95557px rgba(255, 255, 255, 0.17);
@@ -310,7 +310,7 @@
   }
 
   body {
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI,
+    font-family: "OpenRunde", ui-sans-serif, system-ui, -apple-system, Segoe UI,
       Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     @apply bg-background text-foreground;
   }
@@ -343,7 +343,7 @@
 }
 
 .circle-wrapper svg.circle-pulse {
-  width: min(2000px, 160vw);
+  width: min(125rem, 160vw);
   height: auto;
 }
 
@@ -354,10 +354,10 @@
 }
 
 .circle-wrapper svg.circle-big {
-  width: min(2000px, 160vw);
+  width: min(125rem, 160vw);
   height: auto;
   opacity: 0.55;
-  filter: blur(3px);
+  filter: blur(0.1875rem);
 }
 
 .circle-wrapper .circle-small {
@@ -367,10 +367,10 @@
 }
 
 .circle-wrapper svg.circle-small {
-  width: min(1500px, 120vw);
+  width: min(93.75rem, 120vw);
   height: auto;
   opacity: 0.45;
-  filter: blur(1px);
+  filter: blur(0.0625rem);
 }
 
 @keyframes pulse {

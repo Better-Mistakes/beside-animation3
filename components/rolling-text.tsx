@@ -33,15 +33,15 @@ export function RollingText({
           <motion.span
             key={`${textId}-${index}`}
             initial={{
-              filter: "blur(4px)",
+              filter: "blur(0.25rem)",
               opacity: 0,
-              y: 18,
+              y: "1.125rem",
               rotateX: 270,
             }}
             animate={{
-              filter: "blur(0px)",
+              filter: "blur(0rem)",
               opacity: 1,
-              y: 0,
+              y: "0rem",
               rotateX: 0,
             }}
             transition={{
