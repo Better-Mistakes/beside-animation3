@@ -402,8 +402,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
               key={`header-${currentCard.id}`}
               className={cn(
                 "flex gap-4 justify-between items-center w-full",
-                isVisible &&
-                  currentCardIndex === 0 &&
+                currentCardIndex === 0 &&
                   "animate-[shake_0.5s_ease-out_forwards]"
               )}
             >
