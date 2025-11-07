@@ -19,7 +19,7 @@ interface BesideAnimationProps {
 }
 
 export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
-  const startDelay = 3; // 3-second delay before first card appears
+  const startDelay = 2; // 2-second delay before first card appears
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false); // Start paused
@@ -391,13 +391,13 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       {isVisible && (
         <div
           className={cn(
-            "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-[1.25rem] shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300",
+            "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300",
             "animate-[card-enter_0.5s_cubic-bezier(1,-0.4,0.35,0.95)_forwards] pointer-events-none touch-none",
             isTransitioning &&
               "animate-[card-transition-out_0.3s_cubic-bezier(1,-0.4,0.35,0.95)_forwards]"
           )}
         >
-          <div className="@container/card-header flex gap-2 justify-between items-center relative w-full pointer-events-none touch-none">
+          <div className="@container/card-header flex gap-2 justify-between items-center relative w-full pointer-events-none touch-none p-[1.25rem]">
             <div
               key={`header-${currentCard.id}`}
               className={cn(
@@ -523,7 +523,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
           {currentCard.hasContent && currentCard.content && (
             <div
               key={`content-${currentCard.id}`}
-              className="relative w-full card-shadow-large"
+              className="relative w-full card-shadow-large px-[1.25rem] pb-[1.25rem]"
             >
               <div className="mt-[1.5rem]">{currentCard.content}</div>
             </div>
