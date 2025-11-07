@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 interface RollingTextProps {
   text: string;
@@ -33,21 +33,21 @@ export function RollingText({
           <motion.span
             key={`${textId}-${index}`}
             initial={{
-              filter: "blur(0.25rem)",
+              filter: "blur(4px)",
               opacity: 0,
-              y: "1.125rem",
+              y: 18,
               rotateX: 270,
             }}
             animate={{
-              filter: "blur(0rem)",
+              filter: "blur(0px)",
               opacity: 1,
-              y: "0rem",
+              y: 0,
               rotateX: 0,
             }}
             transition={{
-              duration: 0.15,
+              duration: 0.125,
               ease: "easeOut",
-              delay: delay + index * 0.05,
+              delay: delay + index * 0.025,
             }}
           >
             {char}
