@@ -22,10 +22,10 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
   const startDelay = 2; // 2-second delay before first card appears
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false); // Start paused
+  const [isPlaying, setIsPlaying] = useState(false);
   const [cycle, setCycle] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const [isVisible, setIsVisible] = useState(false); // Card visibility
+  const [isVisible, setIsVisible] = useState(false);
 
   const animatedTextPrepItem1 = "Role: Backend & AI Lead at Beside.";
 
@@ -344,7 +344,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
           })
         );
       }
-    }, 500);
+    }, 300);
   }, [cards.length, interval]);
 
   // Handle start delay - show card and emit card-load event
@@ -364,7 +364,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
       setTimeout(() => {
         setIsPlaying(true);
       }, 500);
-    }, startDelay * 1000); // Convert seconds to milliseconds
+    }, startDelay * 1000);
 
     return () => clearTimeout(showCardTimer);
   }, [startDelay, hasStarted]);

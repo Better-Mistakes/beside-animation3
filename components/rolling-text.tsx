@@ -39,9 +39,9 @@ export function RollingText({
               rotateX: 270,
             }}
             animate={{
-              filter: "blur(0)",
+              filter: "blur(0rem)",
               opacity: 1,
-              y: 0,
+              y: "0rem",
               rotateX: 0,
             }}
             transition={{
