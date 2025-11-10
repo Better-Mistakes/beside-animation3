@@ -26,6 +26,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
   const [cycle, setCycle] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [shouldVibrate, setShouldVibrate] = useState(false);
 
   const animatedTextPrepItem1 = "Role: Backend & AI Lead at Beside.";
 
@@ -255,7 +256,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                   text="Maxime"
                   isVisible={true}
                   className="text-text-primary text-body-small font-medium"
-                  delay={0.3}
+                  delay={0.15}
                 />
               </div>
               <div className="flex items-center justify-start gap-2">
@@ -268,7 +269,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
                   text="Matthias"
                   isVisible={true}
                   className="text-text-primary text-body-small font-medium"
-                  delay={0.5}
+                  delay={0.25}
                 />
               </div>
             </div>
@@ -276,7 +277,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
               <RollingText
                 text={animatedTextSummary}
                 isVisible={true}
-                delay={0.7}
+                delay={0.35}
                 className="text-text-primary/50 text-body-small font-medium"
               />
             </p>
@@ -330,8 +331,19 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
 
   const currentCard = cards[currentCardIndex];
 
+  // Calculate when text finishes writing
+  // Title: delay 0, subtitle: delay 0.5, each char takes 0.025s + 0.125s duration
+  const calculateTextCompletionTime = useCallback((card: CardData) => {
+    const titleLength = card.title.length;
+    const subtitleLength = card.subtitle.length;
+    const titleTime = 0 + titleLength * 0.025 + 0.125;
+    const subtitleTime = 0.5 + subtitleLength * 0.025 + 0.125;
+    return Math.max(titleTime, subtitleTime);
+  }, []);
+
   const nextCard = useCallback(() => {
     setIsTransitioning(true);
+    setShouldVibrate(false);
     setTimeout(() => {
       setCurrentCardIndex((prev) => (prev < cards.length - 1 ? prev + 1 : 0));
       setIsTransitioning(false);
@@ -369,6 +381,20 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
     return () => clearTimeout(showCardTimer);
   }, [startDelay, hasStarted]);
 
+  // Handle vibration for first card after text finishes
+  useEffect(() => {
+    if (currentCardIndex === 0) {
+      const textCompletionTime = calculateTextCompletionTime(currentCard);
+      const vibrationDelay = Math.max(0, textCompletionTime * 1000);
+
+      const timer = setTimeout(() => {
+        setShouldVibrate(true);
+      }, vibrationDelay);
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentCardIndex, currentCard, calculateTextCompletionTime]);
+
   useEffect(() => {
     if (!isPlaying) return;
 
@@ -386,7 +412,7 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
         fontFamily:
           "OpenRunde, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
       }}
-      className="flex flex-col items-center justify-center px-[1rem] md:px-0"
+      className="flex flex-col items-center justify-center"
     >
       {isVisible && (
         <div className="relative flex items-center justify-center w-full max-w-[28rem] h-[20rem]">
@@ -394,18 +420,15 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
             className={cn(
               "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-[1.25rem] shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300 ease-spring",
               "animate-[card-enter_0.5s_cubic-bezier(1,-0.4,0.35,0.95)_forwards] pointer-events-none touch-none",
-              isTransitioning &&
-                "animate-[card-transition-out_0.3s_cubic-bezier(1,-0.4,0.35,0.95)_forwards]"
+              isTransitioning
+                ? "animate-[card-transition-out_0.3s_cubic-bezier(1,-0.4,0.35,0.95)_forwards]"
+                : shouldVibrate && "animate-[shake_0.5s_ease-out_infinite]"
             )}
           >
             <div className="@container/card-header flex gap-2 justify-between items-center relative w-full pointer-events-none touch-none">
               <div
                 key={`header-${currentCard.id}`}
-                className={cn(
-                  "flex gap-4 justify-between items-center w-full",
-                  currentCardIndex === 0 &&
-                    "animate-[shake_0.5s_ease-out_infinite]"
-                )}
+                className="flex gap-4 justify-between items-center w-full"
               >
                 <div className="relative flex items-center justify-center size-[3rem]">
                   <span
