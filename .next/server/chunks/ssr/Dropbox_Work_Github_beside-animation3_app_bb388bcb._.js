@@ -1,0 +1,3 @@
+module.exports=[60676,a=>{a.v({className:"openrunde_25f0c7a5-module__R2vbla__className",variable:"openrunde_25f0c7a5-module__R2vbla__variable"})},86292,a=>{"use strict";a.s(["default",()=>f,"metadata",()=>e],86292);var b=a.i(23194),c=a.i(60676);let d={className:c.default.className,style:{fontFamily:"'openRunde', 'openRunde Fallback'"}};null!=c.default.variable&&(d.variable=c.default.variable);let e={title:"Beside Animation",description:"Beside Animation"};function f({children:a}){return(0,b.jsx)("html",{lang:"en",children:(0,b.jsx)("body",{className:`${d.variable} antialiased`,children:a})})}}];
+
+//# sourceMappingURL=Dropbox_Work_Github_beside-animation3_app_bb388bcb._.js.map

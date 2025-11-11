@@ -18,8 +18,8 @@ interface BesideAnimationProps {
   interval?: number; // Interval in seconds
 }
 
-export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
-  const startDelay = 2; // 2-second delay before first card appears
+export function BesideAnimation({ interval = 3.5 }: BesideAnimationProps) {
+  const startDelay = 5; // 5-second delay before first card appears
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -412,13 +412,13 @@ export function BesideAnimation({ interval = 5 }: BesideAnimationProps) {
         fontFamily:
           "OpenRunde, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
       }}
-      className="flex flex-col items-center justify-center"
+      className="flex flex-col items-center justify-end"
     >
       {isVisible && (
         <div className="relative flex items-center justify-center w-full max-w-[28rem] h-[20rem]">
           <div
             className={cn(
-              "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-[1.25rem] shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300 ease-spring",
+              "mb-[10rem] w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-[1.25rem] shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300 ease-spring",
               "animate-[card-enter_0.5s_cubic-bezier(1,-0.4,0.35,0.95)_forwards] pointer-events-none touch-none",
               isTransitioning
                 ? "animate-[card-transition-out_0.3s_cubic-bezier(1,-0.4,0.35,0.95)_forwards]"

@@ -147,35 +147,49 @@
   @keyframes shake {
     0%,
     100% {
-      transform: translateX(0);
+      transform: translateX(-0rem) scale(1) rotate(0deg);
+      filter: blur(0);
     }
     10% {
-      transform: translateX(-0.25rem);
+      transform: translateX(-0.075rem) scale(1.01) rotate(-0.5deg);
+      filter: blur(0.005rem);
     }
     20% {
-      transform: translateX(0.25rem);
+      transform: translateX(0.075rem) scale(1.01) rotate(0.5deg);
+      filter: blur(0.005rem);
     }
     30% {
-      transform: translateX(-0.25rem);
+      transform: translateX(-0.125rem) scale(1.01) rotate(-1deg);
+      filter: blur(0.005rem);
     }
     40% {
-      transform: translateX(0.25rem);
+      transform: translateX(0.125rem) scale(1.01) rotate(1deg);
+      filter: blur(0.005rem);
     }
     50%,
     55% {
-      transform: translateX(0);
+      transform: translateX(0) scale(1.01) rotate(0deg);
+      filter: blur(0);
     }
     60% {
-      transform: translateX(-0.125rem);
+      transform: translateX(-0.125rem) scale(1.01) rotate(-1deg);
+      filter: blur(0.005rem);
     }
     70% {
-      transform: translateX(0.125rem);
+      transform: translateX(0.125rem) scale(1.01) rotate(1deg);
+      filter: blur(0.005rem);
     }
     80% {
-      transform: translateX(-0.125rem);
+      transform: translateX(-0.075rem) scale(1.01) rotate(-0.5deg);
+      filter: blur(0.005rem);
     }
     90% {
-      transform: translateX(0.125rem);
+      transform: translateX(0.075rem) scale(1.01) rotate(0.5deg);
+      filter: blur(0.005rem);
+    }
+    100% {
+      transform: translateX(0rem) scale(1) rotate(0deg);
+      filter: blur(0);
     }
   }
 
