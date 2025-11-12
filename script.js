@@ -232,16 +232,17 @@ function initCardChangePulse() {
     // Kill any existing animations on both pulses to prevent stacking
     gsap.killTweensOf([animatingPulse, resettingPulse]);
 
-    // Animate the current pulse OUT (4s)
+    // Animate the current pulse OUT (4s) with 300ms delay to sync with card
     gsap.to(animatingPulse, {
       opacity: 0,
       y: "-17.5rem",
       scale: 1.5,
       duration: 4,
+      delay: 0.3,
       ease: "power4.out",
     });
 
-    // Animate the other pulse IN (4s)
+    // Animate the other pulse IN (4s) with 300ms delay to sync with card
     // 1. Instantly reset scale and y (no animation)
     gsap.set(resettingPulse, {
       scale: 1,
@@ -252,6 +253,7 @@ function initCardChangePulse() {
     gsap.to(resettingPulse, {
       opacity: 1,
       duration: 4, // Match the pulse out duration
+      delay: 0.3, // 300ms delay to sync with card appearance
       ease: "none", // Linear, no easing
     });
 
@@ -478,6 +480,7 @@ function initHeadingSync() {
       width: isMobile ? "100%" : nextHeadingRect.width + "px",
       height: nextHeadingRect.height + "px",
       duration: 0.5,
+      delay: 0.3, // 300ms delay to sync with card appearance
       ease: "power2.out",
     });
 
@@ -486,6 +489,7 @@ function initHeadingSync() {
       opacity: 0,
       filter: "blur(1rem)",
       duration: 0.3,
+      delay: 0.3, // 300ms delay to sync with card appearance
       ease: "power2.out",
     });
 
@@ -495,7 +499,7 @@ function initHeadingSync() {
       filter: "blur(0rem)",
       duration: 0.5,
       ease: "power2.out",
-      delay: 0.2, // Slight delay after current fades out
+      delay: 0.5, // 300ms + 200ms (original delay after current fades out)
     });
 
     // Update current heading index
