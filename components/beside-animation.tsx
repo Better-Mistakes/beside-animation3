@@ -345,18 +345,18 @@ export function BesideAnimation({ interval = 3.5 }: BesideAnimationProps) {
     setIsTransitioning(true);
     setShouldVibrate(false);
 
-    // Emit custom event immediately when card transition starts
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("beside-card-change", {
-          detail: { interval: interval },
-        })
-      );
-    }
-
     setTimeout(() => {
       setCurrentCardIndex((prev) => (prev < cards.length - 1 ? prev + 1 : 0));
       setIsTransitioning(false);
+
+      // Emit custom event RIGHT when new card starts fading in
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(
+          new CustomEvent("beside-card-change", {
+            detail: { interval: interval },
+          })
+        );
+      }
     }, 300);
   }, [cards.length, interval]);
 

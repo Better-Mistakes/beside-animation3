@@ -136,24 +136,26 @@ function initLoadingAnimation() {
   window.addEventListener("beside-card-load", () => {
     cardLoadEventFired = true;
 
-    // 5. Animate home hero container Y position only (opacity already 1)
+    // 5. Animate home hero container Y position immediately when card appears
     if (homeHeroContainer) {
       gsap.to(homeHeroContainer, {
         y: "0rem",
         duration: 0.8,
         ease: "power4.out",
+        delay: 0, // No delay - sync with card appearance
       });
     }
 
-    // 6. Animate react component (when card loads)
+    // 6. Animate react component immediately when card loads
     gsap.to(reactComponent, {
       opacity: 1,
       y: "0rem",
       duration: 0.8,
       ease: "power4.out",
+      delay: 0, // No delay - sync with card appearance
     });
 
-    // 7. Animate circle pulse - only .is--1 when card loads
+    // 7. Animate circle pulse immediately when card loads
     const circlePulse1 = document.querySelector(".circle-pulse.is--1");
     if (circlePulse1) {
       gsap.to(circlePulse1, {
@@ -162,6 +164,7 @@ function initLoadingAnimation() {
         scale: 1.5,
         duration: 4,
         ease: "power4.out",
+        delay: 0, // No delay - sync with card appearance
       });
     }
   });
@@ -179,6 +182,7 @@ function initLoadingAnimation() {
           y: "0rem",
           duration: 0.8,
           ease: "power4.out",
+          delay: 0, // No delay - sync with card appearance
         });
       }
 
@@ -188,6 +192,7 @@ function initLoadingAnimation() {
         y: "0rem",
         duration: 0.8,
         ease: "power4.out",
+        delay: 0, // No delay - sync with card appearance
       });
 
       // 7. Animate circle pulse - only .is--1 (fallback)
@@ -199,6 +204,7 @@ function initLoadingAnimation() {
           scale: 1.5,
           duration: 4,
           ease: "power4.out",
+          delay: 0, // No delay - sync with card appearance
         });
       }
     }
@@ -232,17 +238,16 @@ function initCardChangePulse() {
     // Kill any existing animations on both pulses to prevent stacking
     gsap.killTweensOf([animatingPulse, resettingPulse]);
 
-    // Animate the current pulse OUT (4s) with 300ms delay to sync with card
+    // Animate the current pulse OUT (4s) - synced with new card fade in
     gsap.to(animatingPulse, {
       opacity: 0,
       y: "-17.5rem",
       scale: 1.5,
       duration: 4,
-      delay: 0.3,
       ease: "power4.out",
     });
 
-    // Animate the other pulse IN (4s) with 300ms delay to sync with card
+    // Animate the other pulse IN (4s) - synced with new card fade in
     // 1. Instantly reset scale and y (no animation)
     gsap.set(resettingPulse, {
       scale: 1,
@@ -253,7 +258,6 @@ function initCardChangePulse() {
     gsap.to(resettingPulse, {
       opacity: 1,
       duration: 4, // Match the pulse out duration
-      delay: 0.3, // 300ms delay to sync with card appearance
       ease: "none", // Linear, no easing
     });
 
@@ -480,26 +484,24 @@ function initHeadingSync() {
       width: isMobile ? "100%" : nextHeadingRect.width + "px",
       height: nextHeadingRect.height + "px",
       duration: 0.5,
-      delay: 0.3, // 300ms delay to sync with card appearance
       ease: "power2.out",
     });
 
-    // Fade out current heading with blur
+    // Fade out current heading with blur - synced with new card fade in
     gsap.to(currentHeading, {
       opacity: 0,
       filter: "blur(1rem)",
       duration: 0.3,
-      delay: 0.3, // 300ms delay to sync with card appearance
       ease: "power2.out",
     });
 
-    // Fade in next heading with deblur
+    // Fade in next heading with deblur - synced with new card fade in
     gsap.to(nextHeading, {
       opacity: 1,
       filter: "blur(0rem)",
       duration: 0.5,
       ease: "power2.out",
-      delay: 0.5, // 300ms + 200ms (original delay after current fades out)
+      delay: 0.2, // Slight delay after current fades out
     });
 
     // Update current heading index
