@@ -115,7 +115,7 @@ export function BesideAnimation({ interval = 3.5 }: BesideAnimationProps) {
                 "linear-gradient(to bottom, transparent 50%, hsla(var(--background-view) / 1) 97.5%)",
             }}
           />
-          <div className="z-50 flex items-center justify-between gap-1 text-palette-purple animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
+          <div className="z-50 flex items-center justify-between gap-[0.25rem] text-palette-purple animate-[fade-in-down_0.2s_cubic-bezier(0.25,0.1,0.25,1)_forwards]">
             <span className="size-6 rounded-xs p-[0.125rem] text-palette-purple">
               <svg
                 viewBox="0 0 24 24"
@@ -372,10 +372,10 @@ export function BesideAnimation({ interval = 3.5 }: BesideAnimationProps) {
         window.dispatchEvent(new CustomEvent("beside-card-load"));
       }
 
-      // After shake animation completes (~0.5s), start interval timer
+      // After shake animation completes (~0.75s), start interval timer
       setTimeout(() => {
         setIsPlaying(true);
-      }, 500);
+      }, 750);
     }, startDelay * 1000);
 
     return () => clearTimeout(showCardTimer);
@@ -383,9 +383,9 @@ export function BesideAnimation({ interval = 3.5 }: BesideAnimationProps) {
 
   // Handle vibration for first card after text finishes
   useEffect(() => {
-    if (currentCardIndex === 0) {
+    if (currentCardIndex === 0 && !isTransitioning) {
       const textCompletionTime = calculateTextCompletionTime(currentCard);
-      const vibrationDelay = Math.max(0, textCompletionTime * 1000);
+      const vibrationDelay = Math.max(0, textCompletionTime * 1250);
 
       const timer = setTimeout(() => {
         setShouldVibrate(true);
@@ -393,7 +393,7 @@ export function BesideAnimation({ interval = 3.5 }: BesideAnimationProps) {
 
       return () => clearTimeout(timer);
     }
-  }, [currentCardIndex, currentCard, calculateTextCompletionTime]);
+  }, [currentCardIndex, isTransitioning, currentCard, calculateTextCompletionTime]);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -412,17 +412,17 @@ export function BesideAnimation({ interval = 3.5 }: BesideAnimationProps) {
         fontFamily:
           "OpenRunde, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
       }}
-      className="flex flex-col items-center justify-end"
+      className="flex flex-col items-center justify-center"
     >
       {isVisible && (
         <div className="relative flex items-center justify-center w-full max-w-[28rem] h-[20rem]">
           <div
             className={cn(
-              "mb-[10rem] w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-[1.25rem] shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300 ease-spring",
-              "animate-[card-enter_0.5s_cubic-bezier(1,-0.4,0.35,0.95)_forwards] pointer-events-none touch-none",
+              "w-full max-w-[28rem] bg-background-elevated/10 border border-border-primary/5 backdrop-blur-xl text-text-primary flex flex-col items-center justify-center p-[1.25rem] shadow-base rounded-[2.75rem] relative overflow-clip transition-all duration-300 ease-spring",
+              "animate-[card-enter_0.75s_cubic-bezier(1,-0.4,0.35,0.95)_forwards] pointer-events-none touch-none",
               isTransitioning
-                ? "animate-[card-transition-out_0.3s_cubic-bezier(1,-0.4,0.35,0.95)_forwards]"
-                : shouldVibrate && "animate-[shake_0.5s_ease-out_infinite]"
+                ? "animate-[card-transition-out_0.5s_cubic-bezier(1,-0.4,0.35,0.95)_forwards]"
+                : shouldVibrate && "animate-[shake_0.75s_ease-out_forwards]"
             )}
           >
             <div className="@container/card-header flex gap-2 justify-between items-center relative w-full pointer-events-none touch-none">
@@ -503,7 +503,7 @@ export function BesideAnimation({ interval = 3.5 }: BesideAnimationProps) {
 
                 <div className="flex h-fit items-center justify-between mr-[0.5rem] shrink-0">
                   {currentCard.id === "team-joined" ? (
-                    <div className="*:data-[slot=avatar]:ring-border flex -space-x-2 items-center *:data-[slot=avatar]:ring-[0.1875rem] animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
+                    <div className="flex -space-x-2 items-center animate-[fade-in-blur_0.3s_cubic-bezier(0.175,0.885,0.32,1.1)_forwards] opacity-0">
                       <img
                         alt="Avatar"
                         data-slot="avatar"
